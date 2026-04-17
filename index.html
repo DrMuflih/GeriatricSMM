@@ -1,6 +1,8 @@
-<html lang="en"><head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>ClinicalEd — IAU Pharmacovigilance Platform</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -170,30 +172,85 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--surface);co
 .check-partial{color:var(--amber);font-size:12px;font-weight:600}
 @media(max-width:700px){
   .sidebar{display:none}
-  .main{padding:14px}
+  .main{padding:14px;padding-bottom:80px}
   .section-nav{gap:5px}
   .sec-btn{padding:7px 10px;font-size:11px}
+  .pt-grid{grid-template-columns:1fr}
+  .row{flex-direction:column}
+  .col{min-width:100%}
+  .vital-strip{gap:6px}
+  .vc{min-width:70px;padding:7px 10px}
+  .score-bar{flex-wrap:wrap}
+}
+
+/* Mobile bottom navigation */
+.mob-nav{
+  display:none;
+  position:fixed;
+  bottom:0;left:0;right:0;
+  background:#fff;
+  border-top:1px solid var(--border);
+  z-index:100;
+  padding:0;
+  box-shadow:0 -2px 12px rgba(0,0,0,0.08)
+}
+.mob-nav-inner{
+  display:flex;
+  align-items:stretch;
+}
+.mob-nav-btn{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:8px 4px;
+  border:none;
+  background:none;
+  cursor:pointer;
+  font-family:inherit;
+  color:var(--text3);
+  font-size:10px;
+  font-weight:500;
+  gap:4px;
+  border-top:2px solid transparent;
+  transition:all .15s;
+  min-height:56px;
+}
+.mob-nav-btn svg{
+  width:20px;height:20px;
+  fill:none;stroke:currentColor;
+  stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;
+}
+.mob-nav-btn.active{
+  color:var(--teal);
+  border-top-color:var(--accent);
+}
+.mob-nav-btn:hover{color:var(--teal)}
+@media(max-width:700px){
+  .mob-nav{display:block}
 }
 </style>
 </head>
-<body><script>window.__EP64="W3siaWQiOjAsImZuYW1lIjoiRmF0aW1haCIsImxuYW1lIjoiQWwtT3RhaWJpIiwiYWdlIjo3OCwiZ2VuZGVyIjoiZiIsIm1ybiI6Ik1STi1HRVItMDAxIiwib2NjIjoiUmV0aXJlZCBUZWFjaGVyIiwiZWR1IjoiU2Vjb25kYXJ5IiwiY2MiOiJSZWN1cnJlbnQgZmFsbHMsIGNvbmZ1c2lvbiwgYW5kIGdlbmVyYWxpc2VkIHdlYWtuZXNzIG92ZXIgMiB3ZWVrcyIsImR4IjpbIkh5cGVydGVuc2lvbiAob24gdHJlYXRtZW50KSIsIkF0cmlhbCBGaWJyaWxsYXRpb24gKGNocm9uaWMsIG5vbi12YWx2dWxhcikiLCJUeXBlIDIgRGlhYmV0ZXMgTWVsbGl0dXMiLCJPc3Rlb2FydGhyaXRpcyAoYmlsYXRlcmFsIGtuZWVzKSIsIkNocm9uaWMgS2lkbmV5IERpc2Vhc2Ug4oCUIHN0YWdlIHRvIGJlIGRldGVybWluZWQgYnkgZUdGUiBjYWxjdWxhdGlvbiIsIkluc29tbmlhIiwiTWlsZCBDb2duaXRpdmUgSW1wYWlybWVudCJdLCJocGkiOiJBIDc4LXllYXItb2xkIHJldGlyZWQgdGVhY2hlciBpcyBicm91Z2h0IHRvIGNsaW5pYyBieSBoZXIgZGF1Z2h0ZXIgZHVlIHRvIHRocmVlIGZhbGxzIGluIHRoZSBwYXN0IHR3byB3ZWVrcywgaW5jcmVhc2luZyBjb25mdXNpb24gZXNwZWNpYWxseSBhdCBuaWdodCAoc3VuZG93bmluZyBwYXR0ZXJuKSwgYW5kIGdlbmVyYWxpc2VkIHdlYWtuZXNzLiBTaGUgY29tcGxhaW5zIG9mIGRyeSBtb3V0aCwgYmx1cnJlZCB2aXNpb24sIGFuZCBkaWZmaWN1bHR5IHVyaW5hdGluZy4gSGVyIGRhdWdodGVyIHJlcG9ydHMgc2hlIGhhcyBiZWVuIG1vcmUgZHJvd3N5IHRoYW4gdXN1YWwuIFNldmVyYWwgbmV3IG1lZGljYXRpb25zIHdlcmUgc3RhcnRlZCAzIHdlZWtzIGFnbyBieSBhIGxvY3VtIHBoeXNpY2lhbiBjb3ZlcmluZyBoZXIgcmVndWxhciBHUC4iLCJwbWgiOiJIb3NwaXRhbGlzZWQgb25jZSBmb3IgaGlwIGZyYWN0dXJlICgyMDE5LCByaWdodCBuZWNrIG9mIGZlbXVyIOKAlCBtYW5hZ2VkIGNvbnNlcnZhdGl2ZWx5KS4gSGlzdG9yeSBvZiBwZXB0aWMgdWxjZXIgZGlzZWFzZSAocmVzb2x2ZWQsIEhlbGljb2JhY3RlciBweWxvcmkgZXJhZGljYXRlZCAyMDE1KS4gTm8gcHJpb3IgY2FyZGlhYyBwcm9jZWR1cmVzLiIsImZoeCI6Ik1vdGhlcjogdmFzY3VsYXIgZGVtZW50aWEgKGRpZWQgYWdlIDg0KS4gRmF0aGVyOiBpc2NoYWVtaWMgc3Ryb2tlIGF0IGFnZSA3MiwgaHlwZXJ0ZW5zaW9uLiBCcm90aGVyOiBUeXBlIDIgRE0uIiwic2h4IjoiTGl2ZXMgYWxvbmUgaW4gYSBzaW5nbGUtc3RvcmV5IGhvbWUuIE5vbi1zbW9rZXIuIE5vIGFsY29ob2wuIFNlZGVudGFyeSBsaWZlc3R5bGUg4oCUIHdhbGtzIHdpdGggYSBzdGljay4gRWF0cyBpcnJlZ3VsYXIgbWVhbHMuIERhdWdodGVyIHZpc2l0cyB0d2ljZSB3ZWVrbHkuIE5vIGZvcm1hbCBjYXJlci4iLCJhbGxlcmciOiJBc3BpcmluIOKAlCBHSSBibGVlZCAoMjAxMCkiLCJtZWRzIjpbeyJuYW1lIjoiV2FyZmFyaW4iLCJkb3NlIjoiNSBtZyIsImZyZXEiOiJPbmNlIGRhaWx5Iiwicm91dGUiOiJQTyIsImZsYWdzIjpbImRkaSJdLCJmbGFnTm90ZSI6IkRESSDimqE6IENsYXJpdGhyb215Y2luIGluaGliaXRzIENZUDJDOSDihpIgcmVkdWNlZCBXYXJmYXJpbiBjbGVhcmFuY2Ug4oaSIHN1cHJhdGhlcmFwZXV0aWMgSU5SICgzLjQpIOKGkiBtYWpvciBibGVlZGluZyByaXNrLiBXaXRoaG9sZCBDbGFyaXRocm9teWNpbjsgbW9uaXRvciBJTlIgZGFpbHkuIn0seyJuYW1lIjoiQ2xhcml0aHJvbXljaW4iLCJkb3NlIjoiNTAwIG1nIiwiZnJlcSI6IlR3aWNlIGRhaWx5Iiwicm91dGUiOiJQTyIsImZsYWdzIjpbImRkaSJdLCJmbGFnTm90ZSI6IkRESSDimqE6ICgxKSBJbmhpYml0cyBDWVAyQzkg4oaSIOKGkSBXYXJmYXJpbiBlZmZlY3Qg4oaSIElOUiAzLjQuICgyKSBJbmhpYml0cyBDWVAzQTQg4oaSIOKGkSBHbGliZW5jbGFtaWRlIGxldmVscyDihpIg4oaRIGh5cG9nbHljYWVtaWEgcmlzay4gRHVhbCBpbnRlcmFjdGlvbiDigJQgSElHSCByaXNrLiJ9LHsibmFtZSI6IkdsaWJlbmNsYW1pZGUgKEdseWJ1cmlkZSkiLCJkb3NlIjoiNSBtZyIsImZyZXEiOiJPbmNlIGRhaWx5Iiwicm91dGUiOiJQTyIsImZsYWdzIjpbImJlZXJzIl0sImZsYWdOb3RlIjoiQmVlcnMgQ3JpdGVyaWEg8J+UtDogTG9uZy1hY3Rpbmcgc3VsZm9ueWx1cmVhIOKAlCBhY3RpdmUgbWV0YWJvbGl0ZXMgYWNjdW11bGF0ZSBpbiBDS0QgKGVHRlIgMzgpLiBDYXVzZXMgcHJvbG9uZ2VkLCB1bnJlY29nbmlzZWQgaHlwb2dseWNhZW1pYSBpbiBlbGRlcmx5LiBBdm9pZCDiiaU2NXkuIFN3aXRjaCB0byBHbGlwaXppZGUgb3IgR0xQLTEgYWdvbmlzdC4ifSx7Im5hbWUiOiJEaXBoZW5oeWRyYW1pbmUgKEJlbmFkcnlsKSIsImRvc2UiOiIyNSBtZyIsImZyZXEiOiJOaWdodGx5IFBSTiIsInJvdXRlIjoiUE8iLCJmbGFncyI6WyJiZWVycyJdLCJmbGFnTm90ZSI6IkJlZXJzIENyaXRlcmlhIPCflLQ6IFN0cm9uZyBhbnRpY2hvbGluZXJnaWMg4oCUIGNhdXNpbmcgVEhJUyBwYXRpZW50J3MgY29uZnVzaW9uLCBkcnkgbW91dGgsIHVyaW5hcnkgcmV0ZW50aW9uLCBhbmQgZmFsbHMuIEV4cGxpY2l0bHkgY29udHJhaW5kaWNhdGVkIOKJpTY1eSBmb3IgaW5zb21uaWEgKEFHUyBCZWVycyAyMDIzKS4gUmVwbGFjZSB3aXRoIGxvdy1kb3NlIG1lbGF0b25pbi4ifSx7Im5hbWUiOiJEaWNsb2ZlbmFjIiwiZG9zZSI6IjUwIG1nIiwiZnJlcSI6IlRocmVlIHRpbWVzIGRhaWx5Iiwicm91dGUiOiJQTyIsImZsYWdzIjpbImJlZXJzIiwicmVuIl0sImZsYWdOb3RlIjoiQmVlcnMgQ3JpdGVyaWEg8J+UtCArIFJlbmFsIPCflLU6IE5TQUlEIOKAlCAoMSkgR0kgYmxlZWQgcmlzazogcHJpb3IgUFVEICsgYXNwaXJpbiBhbGxlcmd5OyAoMikgUmVuYWw6IGF2b2lkIHdoZW4gZUdGUiA8NjAg4oCUIGNhbGN1bGF0ZSBlR0ZSIGZpcnN0OyAoMykgV29yc2VucyBoeXBlcnRlbnNpb24uIEF2b2lkLiBVc2UgdG9waWNhbCBkaWNsb2ZlbmFjIGdlbCBvciBwYXJhY2V0YW1vbC4ifSx7Im5hbWUiOiJNZXRmb3JtaW4iLCJkb3NlIjoiMTAwMCBtZyIsImZyZXEiOiJUd2ljZSBkYWlseSIsInJvdXRlIjoiUE8iLCJmbGFncyI6WyJyZW4iXSwiZmxhZ05vdGUiOiJSZW5hbCBjYXV0aW9uIPCflLU6IEN1cnJlbnQgZG9zZSAoMjAwMCBtZy9kYXkpIOKAlCBvbmNlIHN0dWRlbnRzIGNhbGN1bGF0ZSBlR0ZSLCB0aGV5IHdpbGwgZmluZCBpdCBmYWxscyBpbiB0aGUgcmFuZ2UgcmVxdWlyaW5nIGRvc2UgcmVkdWN0aW9uIHRvIOKJpDEwMDAgbWcvZGF5LiBSaXNrIG9mIGxhY3RpYyBhY2lkb3Npcy4gQ29uc2lkZXIgU0dMVC0yIGluaGliaXRvciBvciBEUFAtNCBpbmhpYml0b3IuIn0seyJuYW1lIjoiQW1sb2RpcGluZSIsImRvc2UiOiI1IG1nIiwiZnJlcSI6Ik9uY2UgZGFpbHkiLCJyb3V0ZSI6IlBPIiwiZmxhZ3MiOltdLCJmbGFnTm90ZSI6IiJ9LHsibmFtZSI6IkF0b3J2YXN0YXRpbiIsImRvc2UiOiIyMCBtZyIsImZyZXEiOiJPbmNlIGRhaWx5IGF0IG5pZ2h0Iiwicm91dGUiOiJQTyIsImZsYWdzIjpbXSwiZmxhZ05vdGUiOiIifV0sInZpdGFscyI6eyJicCI6IjE1OC85NCIsImhyIjo4OCwidGVtcCI6MzYuNSwic3BvMiI6OTYsInd0Ijo1NiwiayI6NS44LCJuYSI6MTMxLCJpbnIiOjMuNCwiaGJhMWMiOjcuMiwiY3IiOiI5NSDCtW1vbC9MIiwiY3JtZ2RsIjoiMS4wNzUgbWcvZEwifSwibGFicyI6W3sibmFtZSI6IklOUiIsInZhbCI6IjMuNCIsInJlZiI6IjIuMOKAkzMuMCIsInN0YXR1cyI6ImhpIiwibm90ZSI6IlN1cHJhdGhlcmFwZXV0aWMg4oCUIG1ham9yIGJsZWVkaW5nIHJpc2sifSx7Im5hbWUiOiJlR0ZSIiwidmFsIjoiMzgiLCJyZWYiOiLiiaU2MCBtTC9taW4vMS43M23CsiIsInN0YXR1cyI6ImhpIiwibm90ZSI6IkNLRCBzdGFnZSAzYiDigJQgZG9zZSBhZGp1c3RtZW50cyByZXF1aXJlZCJ9LHsibmFtZSI6IlBvdGFzc2l1bSAoSyspIiwidmFsIjoiNS44IiwicmVmIjoiMy414oCTNS4xIG1tb2wvTCIsInN0YXR1cyI6ImhpIiwibm90ZSI6Ikh5cGVya2FsYWVtaWEifSx7Im5hbWUiOiJTb2RpdW0gKE5hKykiLCJ2YWwiOiIxMzEiLCJyZWYiOiIxMzXigJMxNDUgbW1vbC9MIiwic3RhdHVzIjoiaGkiLCJub3RlIjoiTWlsZCBoeXBvbmF0cmFlbWlhIn0seyJuYW1lIjoiQ3JlYXRpbmluZSIsInZhbCI6Ijk1IiwicmVmIjoiNDTigJM5NyDCtW1vbC9MIiwic3RhdHVzIjoiaGkiLCJub3RlIjoiTWlsZGx5IGVsZXZhdGVkIOKAlCB1c2UgdGhpcyB2YWx1ZSB0byBjYWxjdWxhdGUgZUdGUiB1c2luZyBDb2NrY3JvZnQtR2F1bHQifSx7Im5hbWUiOiJIYkExYyIsInZhbCI6IjcuMiUiLCJyZWYiOiI8Ny4wJSIsInN0YXR1cyI6Im9rIiwibm90ZSI6Ik5lYXIgZ2x5Y2FlbWljIHRhcmdldCJ9LHsibmFtZSI6IkZhc3RpbmcgQmxvb2QgR2x1Y29zZSIsInZhbCI6IjcuOSBtbW9sL0wiLCJyZWYiOiIzLjnigJM1LjYgbW1vbC9MIiwic3RhdHVzIjoiaGkiLCJub3RlIjoiRWxldmF0ZWQifSx7Im5hbWUiOiJIYWVtb2dsb2JpbiIsInZhbCI6IjEwLjggZy9kTCIsInJlZiI6IjEyLjDigJMxNi4wIGcvZEwiLCJzdGF0dXMiOiJoaSIsIm5vdGUiOiJNaWxkIG5vcm1vY3l0aWMgYW5hZW1pYSJ9LHsibmFtZSI6IldoaXRlIEJsb29kIENlbGxzIiwidmFsIjoiNy4yIMOXMTDigbkvTCIsInJlZiI6IjQuNeKAkzExLjAgw5cxMOKBuS9MIiwic3RhdHVzIjoib2siLCJub3RlIjoiTm9ybWFsIn0seyJuYW1lIjoiQ1JQIiwidmFsIjoiMjIgbWcvTCIsInJlZiI6Ijw1IG1nL0wiLCJzdGF0dXMiOiJoaSIsIm5vdGUiOiJNaWxkIHN5c3RlbWljIGluZmxhbW1hdGlvbiJ9LHsibmFtZSI6IkFMVCIsInZhbCI6IjI4IFUvTCIsInJlZiI6IjfigJM0MCBVL0wiLCJzdGF0dXMiOiJvayIsIm5vdGUiOiJOb3JtYWwgbGl2ZXIgZnVuY3Rpb24ifSx7Im5hbWUiOiJBbGJ1bWluIiwidmFsIjoiMzEgZy9MIiwicmVmIjoiMzXigJM1MCBnL0wiLCJzdGF0dXMiOiJoaSIsIm5vdGUiOiJNaWxkIGh5cG9hbGJ1bWluYWVtaWEifV19LHsiaWQiOjEsImZuYW1lIjoiQWhtYWQiLCJsbmFtZSI6IlIuIiwiYWdlIjo3NywiZ2VuZGVyIjoibSIsIm1ybiI6Ik1STi0xNzc2NDI3MTk1NTY5Iiwib2NjIjoiUmV0aXJlZCB0ZWFjaGVyIiwiZWR1IjoiVW5pdmVyc2l0eSIsImNjIjoiSGVhcnQgRmFpbHVyZSIsImR4IjpbIkhUIiwiRE0iLCJIRiJdLCJocGkiOiIiLCJwbWgiOiIiLCJmaHgiOiIiLCJzaHgiOiIiLCJhbGxlcmciOiIiLCJtZWRzIjpbeyJuYW1lIjoiTWV0Zm9ybWluIiwiZG9zZSI6IjUwMCIsImZyZXEiOiJCSUQiLCJyb3V0ZSI6IlBPIiwiZmxhZ3MiOltdLCJmbGFnTm90ZSI6IiJ9LHsibmFtZSI6IkdsaW1lcGlyaWRlICIsImRvc2UiOiIybWciLCJmcmVxIjoiQklEIiwicm91dGUiOiJQTyIsImZsYWdzIjpbXSwiZmxhZ05vdGUiOiIifSx7Im5hbWUiOiJBc3BpcmluIiwiZG9zZSI6IiIsImZyZXEiOiIiLCJyb3V0ZSI6IlBPIiwiZmxhZ3MiOltdLCJmbGFnTm90ZSI6IiJ9LHsibmFtZSI6IklidXByb2ZlbiIsImRvc2UiOiI0MDAiLCJmcmVxIjoiIiwicm91dGUiOiJQTyIsImZsYWdzIjpbXSwiZmxhZ05vdGUiOiIifV0sInZpdGFscyI6eyJicCI6IiIsImhyIjoiIiwidGVtcCI6IiIsInNwbzIiOiIiLCJ3dCI6IiIsImVnZnIiOiIiLCJrIjoiIiwibmEiOiIiLCJpbnIiOiIiLCJoYmExYyI6IiIsImNyIjoiIn0sImxhYnMiOltdfV0=";window.__EQ64="W3siaWQiOiJxMSIsInB0SWQiOjAsInRleHQiOiJXaGljaCBtZWRpY2F0aW9uIGlzIE1PU1QgbGlrZWx5IHJlc3BvbnNpYmxlIGZvciB0aGlzIHBhdGllbnQncyBjb25mdXNpb24sIGRyeSBtb3V0aCwgdXJpbmFyeSByZXRlbnRpb24sIGFuZCBmYWxscz8iLCJjYXQiOiJCZWVycyBDcml0ZXJpYSIsImV4cCI6IkRpcGhlbmh5ZHJhbWluZSBpcyBhIHBvdGVudCBhbnRpY2hvbGluZXJnaWMgYWdlbnQuIEluIGVsZGVybHkgcGF0aWVudHMsIGl0IGNyb3NzZXMgdGhlIGJsb29kLWJyYWluIGJhcnJpZXIgZmFyIG1vcmUgcmVhZGlseSB0aGFuIGluIHlvdW5nZXIgYWR1bHRzLCBjYXVzaW5nIGNlbnRyYWwgZWZmZWN0czogY29uZnVzaW9uLCBkZWxpcml1bSwgYW5kIHNlZGF0aW9uLiBQZXJpcGhlcmFsIGFudGljaG9saW5lcmdpYyBlZmZlY3RzIGV4cGxhaW4gdGhlIGRyeSBtb3V0aCwgYmx1cnJlZCB2aXNpb24sIGFuZCB1cmluYXJ5IHJldGVudGlvbiBzZWVuIGhlcmUuIFRoZSBBR1MgQmVlcnMgQ3JpdGVyaWEgMjAyMyBleHBsaWNpdGx5IGxpc3RzIGFudGloaXN0YW1pbmVzIChpbmNsdWRpbmcgRGlwaGVuaHlkcmFtaW5lKSBhcyBpbmFwcHJvcHJpYXRlIGZvciBpbnNvbW5pYSBpbiBwYXRpZW50cyDiiaU2NSB5ZWFycy4iLCJvcHRzIjpbIkFtbG9kaXBpbmUiLCJNZXRmb3JtaW4iLCJEaXBoZW5oeWRyYW1pbmUgKEJlbmFkcnlsKSIsIkF0b3J2YXN0YXRpbiJdLCJjb3JyZWN0IjoyfSx7ImlkIjoicTIiLCJwdElkIjowLCJ0ZXh0IjoiVGhlIHBhdGllbnQncyBJTlIgaXMgMy40ICh0aGVyYXBldXRpYyByYW5nZSAyLjDigJMzLjApLiBXaGljaCBkcnVnIGludGVyYWN0aW9uIGlzIG1vc3QgbGlrZWx5IHJlc3BvbnNpYmxlPyIsImNhdCI6IkRydWcgSW50ZXJhY3Rpb25zIiwiZXhwIjoiQ2xhcml0aHJvbXljaW4gaXMgYSBwb3RlbnQgaW5oaWJpdG9yIG9mIENZUDNBNCBhbmQgQ1lQMkM5LiBXYXJmYXJpbiDigJQgc3BlY2lmaWNhbGx5IFMtd2FyZmFyaW4sIHRoZSBtb3JlIHBoYXJtYWNvbG9naWNhbGx5IGFjdGl2ZSBlbmFudGlvbWVyIOKAlCBpcyBwcmltYXJpbHkgbWV0YWJvbGlzZWQgYnkgQ1lQMkM5LiBXaGVuIENsYXJpdGhyb215Y2luIGluaGliaXRzIHRoaXMgZW56eW1lLCB3YXJmYXJpbiBjbGVhcmFuY2UgZmFsbHMsIHBsYXNtYSBjb25jZW50cmF0aW9ucyByaXNlLCBhbmQgdGhlIElOUiBiZWNvbWVzIHN1cHJhdGhlcmFwZXV0aWMuIFRoaXMgaXMgYSB3ZWxsLWRvY3VtZW50ZWQsIGNsaW5pY2FsbHkgc2lnbmlmaWNhbnQgaW50ZXJhY3Rpb24gdGhhdCBjYW4gY2F1c2UgbGlmZS10aHJlYXRlbmluZyBibGVlZGluZy4gQWN0aW9uOiB3aXRoaG9sZCBDbGFyaXRocm9teWNpbiwgbW9uaXRvciBJTlIgZGFpbHksIGFkbWluaXN0ZXIgVml0YW1pbiBLIGlmIGFjdGl2ZWx5IGJsZWVkaW5nLiIsIm9wdHMiOlsiQW1sb2RpcGluZSBpbmhpYml0cyB3YXJmYXJpbiBhYnNvcnB0aW9uIGluIHRoZSBndXQiLCJEaWNsb2ZlbmFjIGRpc3BsYWNlcyB3YXJmYXJpbiBmcm9tIHBsYXNtYSBwcm90ZWluIGJpbmRpbmciLCJDbGFyaXRocm9teWNpbiBpbmhpYml0cyBDWVAyQzkgcmVkdWNpbmcgd2FyZmFyaW4gbWV0YWJvbGlzbSIsIkdsaWJlbmNsYW1pZGUgY29tcGV0ZXMgd2l0aCB3YXJmYXJpbiBmb3IgcmVuYWwgdHVidWxhciBzZWNyZXRpb24iXSwiY29ycmVjdCI6Mn0seyJpZCI6InEzIiwicHRJZCI6MCwidGV4dCI6IldoeSBpcyBHbGliZW5jbGFtaWRlIChHbHlidXJpZGUpIHBhcnRpY3VsYXJseSBkYW5nZXJvdXMgaW4gdGhpcyA3OC15ZWFyLW9sZCBwYXRpZW50IHdpdGggQ0tEIHN0YWdlIDNiPyIsImNhdCI6IkJlZXJzIENyaXRlcmlhIiwiZXhwIjoiR2xpYmVuY2xhbWlkZSBpcyBhIGxvbmctYWN0aW5nIHN1bGZvbnlsdXJlYSB3aXRoIHNldmVyYWwgYWN0aXZlIG1ldGFib2xpdGVzLiBJbiBDS0QgKGVHRlIgMzgpLCByZW5hbCBjbGVhcmFuY2Ugb2YgYm90aCB0aGUgcGFyZW50IGRydWcgYW5kIGl0cyBtZXRhYm9saXRlcyBpcyBzaWduaWZpY2FudGx5IGltcGFpcmVkLiBUaGlzIGxlYWRzIHRvIGRydWcgYWNjdW11bGF0aW9uIGFuZCBwcm9sb25nZWQsIHNldmVyZSBoeXBvZ2x5Y2FlbWlhLiBDcml0aWNhbGx5LCBlbGRlcmx5IHBhdGllbnRzIOKAlCBlc3BlY2lhbGx5IHRob3NlIHdpdGggbWlsZCBjb2duaXRpdmUgaW1wYWlybWVudCDigJQgb2Z0ZW4gbG9zZSB0aGUgYWRyZW5lcmdpYyB3YXJuaW5nIHN5bXB0b21zIG9mIGh5cG9nbHljYWVtaWEgKHRyZW1vciwgcGFscGl0YXRpb25zLCBzd2VhdGluZyksIG1lYW5pbmcgc2V2ZXJlIGh5cG9nbHljYWVtaWEgbWF5IGdvIHVucmVjb2duaXNlZC4gVGhlIEFHUyBCZWVycyBDcml0ZXJpYSBjbGFzc2lmaWVzIGFsbCBsb25nLWFjdGluZyBzdWxmb255bHVyZWFzIGFzIGluYXBwcm9wcmlhdGUgaW4gb2xkZXIgYWR1bHRzLiBTYWZlciBhbHRlcm5hdGl2ZXMgaW5jbHVkZSBzaG9ydGVyLWFjdGluZyBHbGlwaXppZGUgb3IgR0xQLTEgcmVjZXB0b3IgYWdvbmlzdHMuIiwib3B0cyI6WyJJdCBjYXVzZXMgaGVwYXRvdG94aWNpdHkgYW5kIGxpdmVyIGZhaWx1cmUgaW4gdGhlIGVsZGVybHkiLCJJdCBpcyBhIGxvbmctYWN0aW5nIHN1bGZvbnlsdXJlYSDigJQgYWN0aXZlIG1ldGFib2xpdGVzIGFjY3VtdWxhdGUgaW4gQ0tEIGNhdXNpbmcgcHJvbG9uZ2VkLCB1bnJlY29nbmlzZWQgaHlwb2dseWNhZW1pYSIsIkl0IGludGVyYWN0cyB3aXRoIEFtbG9kaXBpbmUgY2F1c2luZyBleGNlc3NpdmUgYmxvb2QgcHJlc3N1cmUgcmVkdWN0aW9uIiwiSXQgaW5jcmVhc2VzIHRoZSByaXNrIG9mIGRydWctaW5kdWNlZCBsdXB1cyBlcnl0aGVtYXRvc3VzIl0sImNvcnJlY3QiOjF9LHsiaWQiOiJxNCIsInB0SWQiOjAsInRleHQiOiJBZnRlciBjYWxjdWxhdGluZyB0aGlzIHBhdGllbnQncyBlR0ZSIHVzaW5nIENvY2tjcm9mdC1HYXVsdCAoYWdlIDc4LCB3ZWlnaHQgNTYga2csIGNyZWF0aW5pbmUgOTUgwrVtb2wvTCwgZmVtYWxlKSwgd2hpY2ggbWVkaWNhdGlvbiByZXF1aXJlcyB1cmdlbnQgZG9zZSByZWR1Y3Rpb24gb3IgZGlzY29udGludWF0aW9uPyIsImNhdCI6IlJlbmFsIERvc2luZyIsImV4cCI6IlVzaW5nIENvY2tjcm9mdC1HYXVsdDogWygxNDAtNzgpIHggNTYgeCAwLjg1XSAvIFs3MiB4IDEuMDc1XSA9IDI5NTEuMiAvIDc3LjQgPSB+MzggbUwvbWluLzEuNzNtwrIgKENLRCBTdGFnZSAzYikuIEF0IHRoaXMgZUdGUiwgTWV0Zm9ybWluIHJlcXVpcmVzIGRvc2UgcmVkdWN0aW9uIOKAlCBndWlkZWxpbmVzIHJlY29tbWVuZCBhIG1heGltdW0gb2YgMTAwMCBtZy9kYXkgd2hlbiBlR0ZSIGlzIDMwLTQ1LCBhbmQgZGlzY29udGludWF0aW9uIGJlbG93IGVHRlIgMzAuIFRoaXMgcGF0aWVudCByZWNlaXZlcyAyMDAwIG1nL2RheSDigJQgZG91YmxlIHRoZSBzYWZlIG1heGltdW0uIFRoZSByaXNrIGlzIGxhY3RpYyBhY2lkb3NpczogbWV0Zm9ybWluIGFjY3VtdWxhdGlvbiBpbXBhaXJzIG1pdG9jaG9uZHJpYWwgb3hpZGF0aXZlIHBob3NwaG9yeWxhdGlvbiBsZWFkaW5nIHRvIGV4Y2VzcyBsYWN0YXRlLiBNb3J0YWxpdHkgdXAgdG8gNTAlLiBJbW1lZGlhdGUgZG9zZSByZWR1Y3Rpb24gaXMgcmVxdWlyZWQuIiwib3B0cyI6WyJBbWxvZGlwaW5lIOKAlCBhY2N1bXVsYXRlcyBpbiByZW5hbCBmYWlsdXJlIGNhdXNpbmcgaHlwb3RlbnNpb24iLCJBdG9ydmFzdGF0aW4g4oCUIG5lcGhyb3RveGljIGF0IGxvdyBlR0ZSIGxldmVscyIsIk1ldGZvcm1pbiDigJQgcmlzayBvZiBsYWN0aWMgYWNpZG9zaXMgd2hlbiBlR0ZSIDw0NSIsIldhcmZhcmluIOKAlCBjYW5ub3QgYmUgY2xlYXJlZCByZW5hbGx5IGF0IHRoaXMgZUdGUiJdLCJjb3JyZWN0IjoyfSx7ImlkIjoicTUiLCJwdElkIjowLCJ0ZXh0IjoiRGljbG9mZW5hYyBpcyBwcmVzY3JpYmVkIGZvciB0aGlzIHBhdGllbnQncyBrbmVlIG9zdGVvYXJ0aHJpdGlzLiBJZGVudGlmeSB0aGUgVFdPIG1haW4gcmVhc29ucyB0aGlzIGlzIGluYXBwcm9wcmlhdGUgYWNjb3JkaW5nIHRvIHRoZSBCZWVycyBDcml0ZXJpYS4iLCJjYXQiOiJQaGFybWFjb3ZpZ2lsYW5jZSIsImV4cCI6IlRoZSBBR1MgQmVlcnMgQ3JpdGVyaWEgbGlzdHMgTlNBSURzIGFzIHBvdGVudGlhbGx5IGluYXBwcm9wcmlhdGUgaW4gb2xkZXIgYWR1bHRzLiBUd28gcmVhc29ucyBhcHBseSBoZXJlOiAoMSkgR0kgcmlzayDigJQgcHJpb3IgcGVwdGljIHVsY2VyIGRpc2Vhc2UgKyBhc3BpcmluIGFsbGVyZ3kgKEdJIGJsZWVkKSArIFdhcmZhcmluIGFudGljb2FndWxhdGlvbiA9IGV4dHJlbWVseSBoaWdoIEdJIGhhZW1vcnJoYWdlIHJpc2suICgyKSBSZW5hbCByaXNrIOKAlCBOU0FJRHMgaW1wYWlyIHByb3N0YWdsYW5kaW4tbWVkaWF0ZWQgcmVuYWwgYWZmZXJlbnQgcGVyZnVzaW9uOyBhdm9pZCB3aGVuIGVHRlIgYmVsb3cgNjAuIE9uY2Ugc3R1ZGVudHMgY2FsY3VsYXRlIGVHRlIgKH4zOCBieSBDb2NrY3JvZnQtR2F1bHQpLCB0aGV5IGNvbmZpcm0gdGhpcyBwYXRpZW50IGlzIHdlbGwgYmVsb3cgdGhlIDYwIHRocmVzaG9sZC4gU2FmZXIgYWx0ZXJuYXRpdmVzOiB0b3BpY2FsIGRpY2xvZmVuYWMgZ2VsLCBwYXJhY2V0YW1vbCA1MDAtMTAwMCBtZyBURFMsIG9yIHBoeXNpb3RoZXJhcHkuIiwib3B0cyI6WyJEaWNsb2ZlbmFjIGNhdXNlcyBjYXJkaWFjIGFycmh5dGhtaWEgYW5kIGlzIGRpcmVjdGx5IG5lcGhyb3RveGljIGluIENLRCIsIkdJIGJsZWVkaW5nIHJpc2sgKHByaW9yIFBVRCArIGFzcGlyaW4gYWxsZXJneSArIFdhcmZhcmluKSBBTkQgcmVuYWwgd29yc2VuaW5nIChOU0FJRCBpbiBlR0ZSIDw2MCkiLCJEaWNsb2ZlbmFjIGlzIGNvbnRyYWluZGljYXRlZCB3aXRoIFdhcmZhcmluIGR1ZSB0byBDWVAgZW56eW1lIGluZHVjdGlvbiBpbmNyZWFzaW5nIHdhcmZhcmluIGxldmVscyIsIkRpY2xvZmVuYWMgYWNjdW11bGF0ZXMgaW4gYWRpcG9zZSB0aXNzdWUgaW4gZWxkZXJseSBwYXRpZW50cyBjYXVzaW5nIHN5c3RlbWljIHRveGljaXR5Il0sImNvcnJlY3QiOjF9LHsiaWQiOiJxNiIsInB0SWQiOjAsInRleHQiOiJXaGF0IGlzIHRoZSBtb3N0IGFwcHJvcHJpYXRlIEZJUlNULUxJTkUgbWFuYWdlbWVudCBmb3IgdGhpcyBwYXRpZW50J3MgaW5zb21uaWEgaW5zdGVhZCBvZiBEaXBoZW5oeWRyYW1pbmU/IiwiY2F0IjoiTWFuYWdlbWVudCIsImV4cCI6Ik5vbi1waGFybWFjb2xvZ2ljYWwgaW50ZXJ2ZW50aW9ucyBhcmUgc3Ryb25nbHkgcmVjb21tZW5kZWQgYXMgZmlyc3QtbGluZSBmb3IgaW5zb21uaWEgaW4gdGhlIGVsZGVybHkuIENvZ25pdGl2ZSBCZWhhdmlvdXJhbCBUaGVyYXB5IGZvciBJbnNvbW5pYSAoQ0JULUkpIGlzIHRoZSBnb2xkIHN0YW5kYXJkIHdpdGggZHVyYWJsZSBsb25nLXRlcm0gYmVuZWZpdC4gU2xlZXAgaHlnaWVuZSBtZWFzdXJlcyAoY29uc2lzdGVudCBzbGVlcC93YWtlIHRpbWUsIGxpbWl0aW5nIGNhZmZlaW5lLCByZWR1Y2luZyBzY3JlZW4gdGltZSwgY29tZm9ydGFibGUgc2xlZXAgZW52aXJvbm1lbnQpIGFyZSBhbHNvIHJlY29tbWVuZGVkLiBJZiBwaGFybWFjb3RoZXJhcHkgaXMgYWJzb2x1dGVseSBuZWNlc3NhcnksIGxvdy1kb3NlIG1lbGF0b25pbiAoMC414oCTMyBtZykgaXMgdGhlIHNhZmVzdCBvcHRpb24uIEJlbnpvZGlhemVwaW5lcyBhbmQgWi1kcnVncyBjYXJyeSBCZWVycyBDcml0ZXJpYSB3YXJuaW5ncyBpbiB0aGUgZWxkZXJseSAoZmFsbCByaXNrLCBjb2duaXRpdmUgaW1wYWlybWVudCkuIEFudGloaXN0YW1pbmVzIHNob3VsZCBiZSBhdm9pZGVkIGVudGlyZWx5LiIsIm9wdHMiOlsiRGlhemVwYW0gNSBtZyBuaWdodGx5IOKAlCBzYWZlIGJlbnpvZGlhemVwaW5lIGFsdGVybmF0aXZlIiwiRGlwaGVuaHlkcmFtaW5lIGF0IGEgcmVkdWNlZCBkb3NlIG9mIDEyLjUgbWciLCJDb2duaXRpdmUgQmVoYXZpb3VyYWwgVGhlcmFweSBmb3IgSW5zb21uaWEgKENCVC1JKSBhbmQgc2xlZXAgaHlnaWVuZSwgd2l0aCBsb3ctZG9zZSBtZWxhdG9uaW4gaWYgcGhhcm1hY290aGVyYXB5IGlzIG5lZWRlZCIsIlpvbHBpZGVtIDEwIG1nIG5pZ2h0bHkg4oCUIG5vbi1iZW56b2RpYXplcGluZSBoeXBub3RpYyBpcyBzYWZlIGluIGVsZGVybHkiXSwiY29ycmVjdCI6Mn1d";</script>
+<body>
 <textarea id="_src" style="display:none"></textarea>
 
 <!-- ═══════════════ LOGIN SCREEN ═══════════════ -->
 <div id="loginScreen" class="login-wrap">
   <div class="login-box">
     <div class="login-logo">
-      <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+      <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
     </div>
     <div class="login-t">ClinicalEd Platform</div>
     <div class="login-s">Imam Abdulrahman Bin Faisal University<br>Pharmacovigilance &amp; Geriatric Medicine Training</div>
     <div class="fg">
       <label>Username</label>
-      <input type="text" id="lu" placeholder="Enter your username" autocomplete="off">
+      <input type="text" id="lu" placeholder="Enter your username" autocomplete="off"/>
     </div>
     <div class="fg">
       <label>Password</label>
-      <input type="password" id="lp" placeholder="Enter your password" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()">
+      <input type="password" id="lp" placeholder="Enter your password" autocomplete="off"
+        onkeydown="if(event.key==='Enter')doLogin()"/>
     </div>
     <div class="err-box" id="errBox">
       ✕ &nbsp;Incorrect username or password. Please try again.
@@ -215,7 +272,7 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--surface);co
   <div class="hdr">
     <div class="hdr-brand">
       <div class="hdr-logo">
-        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
       </div>
       <div>
         <div class="brand-t">ClinicalEd — IAU</div>
@@ -235,44 +292,44 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--surface);co
       <div class="sb-sec hidden" id="instNav">
         <div class="sb-lbl">Instructor</div>
         <button class="sb-item active" onclick="gp('patients',this)">
-          <span class="si"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>All Patients
+          <span class="si"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>All Patients
         </button>
         <button class="sb-item" onclick="gp('addPt',this)">
-          <span class="si"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg></span>Add Patient
+          <span class="si"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></span>Add Patient
         </button>
         <button class="sb-item" onclick="gp('questions',this)">
-          <span class="si"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></span>Question Bank
+          <span class="si"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>Question Bank
         </button>
         <button class="sb-item" onclick="gp('addQ',this)">
-          <span class="si"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4z"></path></svg></span>Add Question
+          <span class="si"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4z"/></svg></span>Add Question
         </button>
         <button class="sb-item" onclick="gp('results',this)">
-          <span class="si"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg></span>Student Results
+          <span class="si"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>Student Results
         </button>
         <button class="sb-item" onclick="gp('access',this)">
-          <span class="si"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>Student Access
+          <span class="si"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>Student Access
         </button>
         <button class="sb-item" onclick="gp('reflectInst',this)">
-          <span class="si"><svg viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></span>Reflections
+          <span class="si"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>Reflections
         </button>
         <button class="sb-item" onclick="gp('export',this)" style="margin-top:8px;background:var(--teal-l);color:var(--teal);border:1.5px solid var(--accent)">
-          <span class="si"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg></span>Export &amp; Publish
+          <span class="si"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></span>Export & Publish
         </button>
       </div>
       <!-- Student nav -->
       <div class="sb-sec hidden" id="studNav">
         <div class="sb-lbl">Student</div>
         <button class="sb-item active" onclick="gp('cases',this)">
-          <span class="si"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span>Patient Cases
+          <span class="si"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>Patient Cases
         </button>
         <button class="sb-item" onclick="gp('quiz',this)">
-          <span class="si"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></span>Assessment
+          <span class="si"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>Assessment
         </button>
         <button class="sb-item" onclick="gp('myRes',this)">
-          <span class="si"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></span>My Results
+          <span class="si"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>My Results
         </button>
         <button class="sb-item" onclick="gp('reflect',this)">
-          <span class="si"><svg viewBox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></span>My Reflection
+          <span class="si"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>My Reflection
         </button>
       </div>
     </div>
@@ -287,7 +344,7 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--surface);co
           <button class="btn-sm" onclick="gp('addPt')">+ Add Patient</button>
         </div>
         <div class="alert-box alert-teal">
-          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           <div>You are logged in as <strong>Dr. Muflih (Instructor)</strong>. You can view all safety flags, manage cases, add questions, and review student submissions. Each patient card lets you preview the exact student-facing view.</div>
         </div>
         <div class="pt-grid" id="ptGrid"></div>
@@ -297,43 +354,40 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--surface);co
       <div class="page hidden" id="page-addPt">
         <div class="pg-title">Add New Patient</div><div class="pg-sub">Create a new clinical case for your students</div>
         <div class="card">
-          <div class="card-hdr"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--teal);stroke-width:2;stroke-linecap:round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Demographics</div>
-          <div class="row"><div class="col fg"><label>First Name</label><input id="pf" placeholder="e.g. Fatimah"></div><div class="col fg"><label>Last Name</label><input id="pl" placeholder="e.g. Al-Otaibi"></div></div>
-          <div class="row"><div class="col fg"><label>Age</label><input type="number" id="pa" placeholder="78"></div><div class="col fg"><label>Gender</label><select id="pg"><option value="f">Female</option><option value="m">Male</option></select></div><div class="col fg"><label>MRN</label><input id="pm" placeholder="Auto-generated"></div></div>
-          <div class="row"><div class="col fg"><label>Occupation</label><input id="po" placeholder="e.g. Retired teacher"></div><div class="col fg"><label>Education Level</label><select id="pe"><option>Primary</option><option>Secondary</option><option selected="">University</option><option>Postgraduate</option><option>None</option></select></div></div>
+          <div class="card-hdr"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--teal);stroke-width:2;stroke-linecap:round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Demographics</div>
+          <div class="row"><div class="col fg"><label>First Name</label><input id="pf" placeholder="e.g. Fatimah"/></div><div class="col fg"><label>Last Name</label><input id="pl" placeholder="e.g. Al-Otaibi"/></div></div>
+          <div class="row"><div class="col fg"><label>Age</label><input type="number" id="pa" placeholder="78"/></div><div class="col fg"><label>Gender</label><select id="pg"><option value="f">Female</option><option value="m">Male</option></select></div><div class="col fg"><label>MRN</label><input id="pm" placeholder="Auto-generated"/></div></div>
+          <div class="row"><div class="col fg"><label>Occupation</label><input id="po" placeholder="e.g. Retired teacher"/></div><div class="col fg"><label>Education Level</label><select id="pe"><option>Primary</option><option>Secondary</option><option selected>University</option><option>Postgraduate</option><option>None</option></select></div></div>
         </div>
         <div class="card">
-          <div class="card-hdr"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--red);stroke-width:2;stroke-linecap:round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>Medical History</div>
-          <div class="fg"><label>Chief Complaint</label><input id="pcc" placeholder="e.g. Recurrent falls and confusion"></div>
-          <div class="fg"><label>Diagnoses (one per line)</label><textarea id="pdx" placeholder="Hypertension
-Atrial Fibrillation
-Type 2 DM
-CKD Stage 3b"></textarea></div>
+          <div class="card-hdr"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--red);stroke-width:2;stroke-linecap:round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Medical History</div>
+          <div class="fg"><label>Chief Complaint</label><input id="pcc" placeholder="e.g. Recurrent falls and confusion"/></div>
+          <div class="fg"><label>Diagnoses (one per line)</label><textarea id="pdx" placeholder="Hypertension&#10;Atrial Fibrillation&#10;Type 2 DM&#10;CKD Stage 3b"></textarea></div>
           <div class="fg"><label>History of Present Illness</label><textarea id="phpi" placeholder="Narrative of current presentation..." style="min-height:90px"></textarea></div>
           <div class="fg"><label>Past Medical History</label><textarea id="ppmh" placeholder="Previous hospitalisations, surgeries..."></textarea></div>
           <div class="fg"><label>Family History</label><textarea id="pfhx" placeholder="Relevant family conditions..."></textarea></div>
           <div class="fg"><label>Social History</label><textarea id="pshx" placeholder="Smoking, alcohol, occupation, living situation..."></textarea></div>
-          <div class="fg"><label>Allergies</label><input id="pal" placeholder="NKDA or list allergies with reactions"></div>
+          <div class="fg"><label>Allergies</label><input id="pal" placeholder="NKDA or list allergies with reactions"/></div>
         </div>
         <div class="card">
-          <div class="card-hdr"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--purple);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="3" y="3" width="8" height="18" rx="4"></rect><rect x="13" y="3" width="8" height="18" rx="4"></rect><line x1="3" y1="12" x2="11" y2="12"></line><line x1="13" y1="12" x2="21" y2="12"></line></svg>Medications</div>
+          <div class="card-hdr"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--purple);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="3" y="3" width="8" height="18" rx="4"/><rect x="13" y="3" width="8" height="18" rx="4"/><line x1="3" y1="12" x2="11" y2="12"/><line x1="13" y1="12" x2="21" y2="12"/></svg>Medications</div>
           <div id="medRows"></div>
           <button class="btn-gh" onclick="addMed()" style="margin-top:8px;font-size:12px">+ Add Medication</button>
         </div>
         <div class="card">
-          <div class="card-hdr"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--amber);stroke-width:2;stroke-linecap:round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>Vitals &amp; Labs</div>
+          <div class="card-hdr"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--amber);stroke-width:2;stroke-linecap:round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Vitals &amp; Labs</div>
           <div class="row">
-            <div class="col fg" style="min-width:100px"><label>BP (mmHg)</label><input id="vbp" placeholder="152/90"></div>
-            <div class="col fg" style="min-width:80px"><label>HR (bpm)</label><input type="number" id="vhr" placeholder="88"></div>
-            <div class="col fg" style="min-width:80px"><label>Temp °C</label><input type="number" id="vt" placeholder="36.6" step="0.1"></div>
-            <div class="col fg" style="min-width:80px"><label>SpO2 %</label><input type="number" id="vs" placeholder="96"></div>
-            <div class="col fg" style="min-width:80px"><label>Weight kg</label><input type="number" id="vw" placeholder="58"></div>
-            <div class="col fg" style="min-width:80px"><label>eGFR</label><input type="number" id="vegfr" placeholder="38"></div>
-            <div class="col fg" style="min-width:80px"><label>K+ mmol/L</label><input type="number" id="vk" step="0.1" placeholder="5.8"></div>
-            <div class="col fg" style="min-width:80px"><label>Na+ mmol/L</label><input type="number" id="vna" placeholder="131"></div>
-            <div class="col fg" style="min-width:80px"><label>INR</label><input type="number" id="vinr" step="0.1" placeholder="3.4"></div>
-            <div class="col fg" style="min-width:80px"><label>HbA1c %</label><input type="number" id="vhba" step="0.1" placeholder="7.2"></div>
-            <div class="col fg" style="min-width:100px"><label>Creatinine</label><input id="vcr" placeholder="148 µmol/L"></div>
+            <div class="col fg" style="min-width:100px"><label>BP (mmHg)</label><input id="vbp" placeholder="152/90"/></div>
+            <div class="col fg" style="min-width:80px"><label>HR (bpm)</label><input type="number" id="vhr" placeholder="88"/></div>
+            <div class="col fg" style="min-width:80px"><label>Temp °C</label><input type="number" id="vt" placeholder="36.6" step="0.1"/></div>
+            <div class="col fg" style="min-width:80px"><label>SpO2 %</label><input type="number" id="vs" placeholder="96"/></div>
+            <div class="col fg" style="min-width:80px"><label>Weight kg</label><input type="number" id="vw" placeholder="58"/></div>
+            <div class="col fg" style="min-width:80px"><label>eGFR</label><input type="number" id="vegfr" placeholder="38"/></div>
+            <div class="col fg" style="min-width:80px"><label>K+ mmol/L</label><input type="number" id="vk" step="0.1" placeholder="5.8"/></div>
+            <div class="col fg" style="min-width:80px"><label>Na+ mmol/L</label><input type="number" id="vna" placeholder="131"/></div>
+            <div class="col fg" style="min-width:80px"><label>INR</label><input type="number" id="vinr" step="0.1" placeholder="3.4"/></div>
+            <div class="col fg" style="min-width:80px"><label>HbA1c %</label><input type="number" id="vhba" step="0.1" placeholder="7.2"/></div>
+            <div class="col fg" style="min-width:100px"><label>Creatinine</label><input id="vcr" placeholder="148 µmol/L"/></div>
           </div>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
@@ -353,40 +407,40 @@ CKD Stage 3b"></textarea></div>
         <div class="bc" onclick="viewPt(S._editPtIdx,true)">← <span>Back to patient</span></div>
         <div class="pg-title">Edit Patient Record</div><div class="pg-sub">Changes are saved immediately to the live platform</div>
         <div class="card">
-          <div class="card-hdr"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--teal);stroke-width:2;stroke-linecap:round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Demographics</div>
-          <div class="row"><div class="col fg"><label>First Name</label><input id="epf"></div><div class="col fg"><label>Last Name</label><input id="epl"></div></div>
-          <div class="row"><div class="col fg"><label>Age</label><input type="number" id="epa"></div><div class="col fg"><label>Gender</label><select id="epg"><option value="f">Female</option><option value="m">Male</option></select></div><div class="col fg"><label>MRN</label><input id="epm"></div></div>
-          <div class="row"><div class="col fg"><label>Occupation</label><input id="epo"></div><div class="col fg"><label>Education Level</label><select id="epe"><option>Primary</option><option>Secondary</option><option>University</option><option>Postgraduate</option><option>None</option></select></div></div>
+          <div class="card-hdr"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--teal);stroke-width:2;stroke-linecap:round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Demographics</div>
+          <div class="row"><div class="col fg"><label>First Name</label><input id="epf"/></div><div class="col fg"><label>Last Name</label><input id="epl"/></div></div>
+          <div class="row"><div class="col fg"><label>Age</label><input type="number" id="epa"/></div><div class="col fg"><label>Gender</label><select id="epg"><option value="f">Female</option><option value="m">Male</option></select></div><div class="col fg"><label>MRN</label><input id="epm"/></div></div>
+          <div class="row"><div class="col fg"><label>Occupation</label><input id="epo"/></div><div class="col fg"><label>Education Level</label><select id="epe"><option>Primary</option><option>Secondary</option><option>University</option><option>Postgraduate</option><option>None</option></select></div></div>
         </div>
         <div class="card">
-          <div class="card-hdr"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--red);stroke-width:2;stroke-linecap:round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>Medical History</div>
-          <div class="fg"><label>Chief Complaint</label><input id="epcc"></div>
+          <div class="card-hdr"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--red);stroke-width:2;stroke-linecap:round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>Medical History</div>
+          <div class="fg"><label>Chief Complaint</label><input id="epcc"/></div>
           <div class="fg"><label>Diagnoses (one per line)</label><textarea id="epdx" style="min-height:100px"></textarea></div>
           <div class="fg"><label>History of Present Illness</label><textarea id="ephpi" style="min-height:100px"></textarea></div>
           <div class="fg"><label>Past Medical History</label><textarea id="eppmh"></textarea></div>
           <div class="fg"><label>Family History</label><textarea id="epfhx"></textarea></div>
           <div class="fg"><label>Social History</label><textarea id="epshx"></textarea></div>
-          <div class="fg"><label>Allergies</label><input id="epal"></div>
+          <div class="fg"><label>Allergies</label><input id="epal"/></div>
         </div>
         <div class="card">
-          <div class="card-hdr"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--purple);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="3" y="3" width="8" height="18" rx="4"></rect><rect x="13" y="3" width="8" height="18" rx="4"></rect><line x1="3" y1="12" x2="11" y2="12"></line><line x1="13" y1="12" x2="21" y2="12"></line></svg>Medications</div>
+          <div class="card-hdr"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--purple);stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><rect x="3" y="3" width="8" height="18" rx="4"/><rect x="13" y="3" width="8" height="18" rx="4"/><line x1="3" y1="12" x2="11" y2="12"/><line x1="13" y1="12" x2="21" y2="12"/></svg>Medications</div>
           <div id="editMedRows"></div>
           <button class="btn-gh" onclick="addEditMed()" style="margin-top:8px;font-size:12px">+ Add Medication</button>
         </div>
         <div class="card">
-          <div class="card-hdr"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--amber);stroke-width:2;stroke-linecap:round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>Vitals &amp; Labs</div>
+          <div class="card-hdr"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--amber);stroke-width:2;stroke-linecap:round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Vitals &amp; Labs</div>
           <div class="row">
-            <div class="col fg" style="min-width:100px"><label>BP (mmHg)</label><input id="evbp"></div>
-            <div class="col fg" style="min-width:80px"><label>HR (bpm)</label><input type="number" id="evhr"></div>
-            <div class="col fg" style="min-width:80px"><label>Temp °C</label><input type="number" id="evt" step="0.1"></div>
-            <div class="col fg" style="min-width:80px"><label>SpO2 %</label><input type="number" id="evs"></div>
-            <div class="col fg" style="min-width:80px"><label>Weight kg</label><input type="number" id="evw"></div>
-            <div class="col fg" style="min-width:80px"><label>eGFR</label><input type="number" id="evegfr"></div>
-            <div class="col fg" style="min-width:80px"><label>K+ mmol/L</label><input type="number" id="evk" step="0.1"></div>
-            <div class="col fg" style="min-width:80px"><label>Na+ mmol/L</label><input type="number" id="evna"></div>
-            <div class="col fg" style="min-width:80px"><label>INR</label><input type="number" id="evinr" step="0.1"></div>
-            <div class="col fg" style="min-width:80px"><label>HbA1c %</label><input type="number" id="evhba" step="0.1"></div>
-            <div class="col fg" style="min-width:100px"><label>Creatinine</label><input id="evcr"></div>
+            <div class="col fg" style="min-width:100px"><label>BP (mmHg)</label><input id="evbp"/></div>
+            <div class="col fg" style="min-width:80px"><label>HR (bpm)</label><input type="number" id="evhr"/></div>
+            <div class="col fg" style="min-width:80px"><label>Temp °C</label><input type="number" id="evt" step="0.1"/></div>
+            <div class="col fg" style="min-width:80px"><label>SpO2 %</label><input type="number" id="evs"/></div>
+            <div class="col fg" style="min-width:80px"><label>Weight kg</label><input type="number" id="evw"/></div>
+            <div class="col fg" style="min-width:80px"><label>eGFR</label><input type="number" id="evegfr"/></div>
+            <div class="col fg" style="min-width:80px"><label>K+ mmol/L</label><input type="number" id="evk" step="0.1"/></div>
+            <div class="col fg" style="min-width:80px"><label>Na+ mmol/L</label><input type="number" id="evna"/></div>
+            <div class="col fg" style="min-width:80px"><label>INR</label><input type="number" id="evinr" step="0.1"/></div>
+            <div class="col fg" style="min-width:80px"><label>HbA1c %</label><input type="number" id="evhba" step="0.1"/></div>
+            <div class="col fg" style="min-width:100px"><label>Creatinine</label><input id="evcr"/></div>
           </div>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
@@ -461,9 +515,9 @@ CKD Stage 3b"></textarea></div>
         <div class="pg-title">Student Access</div>
         <div class="pg-sub">Share these credentials with your students</div>
         <div class="card">
-          <div class="card-hdr"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--teal);stroke-width:2;stroke-linecap:round"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>Shared Login Credentials</div>
+          <div class="card-hdr"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--teal);stroke-width:2;stroke-linecap:round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Shared Login Credentials</div>
           <div class="alert-box alert-teal">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             Students log in with the same username and password. The platform automatically detects their role — they cannot access instructor controls, cannot add or edit patients or questions, and cannot view safety flags or correct answers until after they submit.
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px">
@@ -502,7 +556,7 @@ CKD Stage 3b"></textarea></div>
         <div class="pg-title">Patient Cases</div>
         <div class="pg-sub">Review each case carefully before attempting the assessment</div>
         <div class="alert-box alert-blue">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           Study the complete patient record — demographics, medical history, medications, vitals, and lab results. Look carefully for any medications that may be inappropriate, unsafe, or interacting before you take the assessment.
         </div>
         <div class="pt-grid" id="studPtGrid"></div>
@@ -529,14 +583,14 @@ CKD Stage 3b"></textarea></div>
         <div class="pg-sub">Share your thoughts on the pharmacovigilance case</div>
         <div class="card" style="text-align:center;padding:40px 30px">
           <div style="width:64px;height:64px;background:var(--teal-l);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px">
-            <svg viewBox="0 0 24 24" style="width:28px;height:28px;fill:none;stroke:var(--teal);stroke-width:2;stroke-linecap:round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+            <svg viewBox="0 0 24 24" style="width:28px;height:28px;fill:none;stroke:var(--teal);stroke-width:2;stroke-linecap:round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
           </div>
           <div style="font-size:18px;font-weight:700;color:var(--navy);margin-bottom:10px">Submit Your Reflection</div>
           <div style="font-size:13px;color:var(--text2);line-height:1.75;max-width:480px;margin:0 auto 28px">
             After reviewing the patient case and completing the assessment, click the button below to open the reflection form. You will be asked to enter your <strong>full name</strong>, <strong>university ID</strong>, and your <strong>reflection</strong> on what you learned.
           </div>
           <button class="btn-prim" style="width:auto;padding:13px 36px;font-size:14px;display:inline-flex;align-items:center;gap:10px;margin:0 auto" onclick="openReflectionForm()">
-            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
             Start My Reflection
           </button>
           <div style="margin-top:20px;font-size:11px;color:var(--text3)">Opens in a new tab — your response goes directly to Dr. Muflih</div>
@@ -548,12 +602,12 @@ CKD Stage 3b"></textarea></div>
         <div class="pg-title">Student Reflections</div>
         <div class="pg-sub">All submitted reflections — visible to Dr. Muflih only</div>
         <div class="alert-box alert-blue">
-          <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           <div>Reflections submitted via the Google Form appear in your linked Google Sheet in real time. Click the button below to open your responses. Students who submit directly on this page are also shown below.</div>
         </div>
         <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap">
           <button class="btn-prim" style="width:auto;padding:11px 24px;display:flex;align-items:center;gap:8px" onclick="openGoogleForm(true)">
-            <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Open Google Form Responses
           </button>
         </div>
@@ -566,19 +620,19 @@ CKD Stage 3b"></textarea></div>
         <div class="pg-title">Export &amp; Publish</div>
         <div class="pg-sub">Download the updated platform and upload to GitHub to make changes live for students</div>
         <div class="alert-box alert-teal">
-          <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
           <div>Any patients or questions you added/edited this session are saved in this export. Download the file below, rename it to <strong>index.html</strong>, then upload it to your GitHub repository to make all changes permanently visible to students.</div>
         </div>
         <div class="card">
           <div class="card-hdr">
-            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--teal);stroke-width:2;stroke-linecap:round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--teal);stroke-width:2;stroke-linecap:round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             What is included in this export
           </div>
           <div id="exportSummary" style="font-size:13px;color:var(--text2);line-height:1.8"></div>
         </div>
         <div class="card">
           <div class="card-hdr">
-            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--navy);stroke-width:2;stroke-linecap:round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11m0 0h10m-10 0a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path></svg>
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:var(--navy);stroke-width:2;stroke-linecap:round"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v11m0 0h10m-10 0a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/></svg>
             Steps to publish to GitHub
           </div>
           <div style="counter-reset:steps">
@@ -605,7 +659,7 @@ CKD Stage 3b"></textarea></div>
           </div>
         </div>
         <button class="btn-prim" style="width:auto;padding:13px 32px;font-size:14px;display:flex;align-items:center;gap:10px" onclick="exportPlatform()">
-          <svg viewBox="0 0 24 24" style="width:17px;height:17px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          <svg viewBox="0 0 24 24" style="width:17px;height:17px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download Updated Platform
         </button>
         <div style="font-size:11px;color:var(--text3);margin-top:10px">File will download as ClinicalEd_Muflih.html — remember to rename to index.html before uploading to GitHub</div>
@@ -804,8 +858,9 @@ function applyRole() {
   document.getElementById('instNav').classList.toggle('hidden', !isInst);
   document.getElementById('studNav').classList.toggle('hidden', isInst);
   document.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
-  if (isInst) { gp('patients'); renderPtGrid(); }
-  else { gp('cases'); renderStudPts(); }
+  buildMobNav();
+  if (isInst) { gp('patients'); setMobNav('patients'); renderPtGrid(); }
+  else { gp('cases'); setMobNav('cases'); renderStudPts(); }
 }
 
 function doLogout() {
@@ -827,6 +882,7 @@ function gp(name, btn) {
   if (pg) pg.className = 'page active';
   document.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
   if (btn) btn.classList.add('active');
+  setMobNav(name);
   if (name === 'patients') renderPtGrid();
   if (name === 'questions') renderQList();
   if (name === 'addQ') { popPtSel(); }
@@ -1794,6 +1850,58 @@ function renderReflectInst() {
 
 
 
+
+// ═══════════════════════════════════════════
+// MOBILE BOTTOM NAVIGATION
+// ═══════════════════════════════════════════
+function buildMobNav() {
+  var el = document.getElementById('mobNavInner');
+  if (!el) return;
+
+  var isInst = S.role === 'instructor';
+
+  var instItems = [
+    { page:'patients',    icon:'<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>',  label:'Patients' },
+    { page:'addPt',       icon:'<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/>',                                      label:'Add Case' },
+    { page:'questions',   icon:'<circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>',                        label:'Questions' },
+    { page:'results',     icon:'<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>',                                label:'Results' },
+    { page:'export',      icon:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>',                  label:'Export' },
+  ];
+
+  var studItems = [
+    { page:'cases',       icon:'<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',                                              label:'Cases' },
+    { page:'quiz',        icon:'<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>',  label:'Assessment' },
+    { page:'myRes',       icon:'<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>',                                                                                                label:'My Results' },
+    { page:'reflect',     icon:'<path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>',                                                           label:'Reflection' },
+  ];
+
+  var items = isInst ? instItems : studItems;
+
+  el.innerHTML = items.map(function(item) {
+    return '<button class="mob-nav-btn" id="mob-' + item.page + '" data-page="' + item.page + '">'
+      + '<svg viewBox="0 0 24 24">' + item.icon + '</svg>'
+      + '<span>' + item.label + '</span>'
+      + '</button>';
+  }).join('');
+
+  // Attach click handlers after rendering
+  el.querySelectorAll('.mob-nav-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var page = this.getAttribute('data-page');
+      gp(page);
+      setMobNav(page);
+    });
+  });
+}
+
+function setMobNav(page) {
+  document.querySelectorAll('.mob-nav-btn').forEach(function(b) {
+    b.classList.remove('active');
+  });
+  var btn = document.getElementById('mob-' + page);
+  if (btn) btn.classList.add('active');
+}
+
 // EXPORT
 function renderExportSummary() {
   var el = document.getElementById('exportSummary');
@@ -1833,13 +1941,13 @@ function exportPlatform() {
     var exported = src.replace('<body>', '<body>' + dataStr);
 
     // Reset app to login screen in exported file
-    exported = exported.replace('class="app-wrap"', 'class="app-wrap"');
+    exported = exported.replace('class="app-wrap visible"', 'class="app-wrap"');
 
     // Fix any HTML entity encoding so passwords work
-    exported = exported.replace(/'/g, "'");
-    exported = exported.replace(/'/g, "'");
-    exported = exported.replace(/'/g, "'");
-    exported = exported.replace(/"/g, '"');
+    exported = exported.replace(/&#x27;/g, "'");
+    exported = exported.replace(/&apos;/g, "'");
+    exported = exported.replace(/&#39;/g, "'");
+    exported = exported.replace(/&quot;/g, '"');
 
     // Download
     var blob = new Blob([exported], {type: 'text/html;charset=utf-8'});
@@ -1871,6 +1979,12 @@ function exportPlatform() {
 
 
 </script>
+<!-- MOBILE BOTTOM NAV -->
+<div class="mob-nav" id="mobNav">
+  <div class="mob-nav-inner" id="mobNavInner"></div>
+</div>
+
+
 <script>
 (function(){
   var t = document.getElementById('_src');
@@ -1878,4 +1992,6 @@ function exportPlatform() {
     t.value = document.documentElement.outerHTML;
   }
 })();
-</script></body></html>
+</script>
+</body>
+</html>
