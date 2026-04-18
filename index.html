@@ -13,12 +13,37 @@
   --surface:#f4f6f9;--card:#fff;--border:#dde3ec;
   --text:#0a2540;--text2:#4a5568;--text3:#8a95a3;
 }
-body{font-family:system-ui,-apple-system,sans-serif;background:var(--surface);color:var(--text);min-height:100vh}
-.hidden{display:none!important}
-/* ── HEADER ── */
-.hdr{background:var(--navy);color:#fff;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;border-bottom:3px solid var(--accent);position:sticky;top:0;z-index:50}
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--surface);color:var(--text);min-height:100vh;position:relative}
+
+/* Pharmacovigilance background - pharmacist & geriatric patient */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221400%22%20height%3D%22900%22%20viewBox%3D%220%200%201400%20900%22%3E%0A%3Cdefs%3E%0A%20%20%3Cstyle%3E%0A%20%20%20%20.scene%20%7B%20opacity%3A%200.13%3B%20%7D%0A%20%20%20%20.label%20%7B%20font-family%3A%20sans-serif%3B%20font-size%3A%2013px%3B%20font-weight%3A%20600%3B%20fill%3A%20%230a2540%3B%20opacity%3A%200.18%3B%20%7D%0A%20%20%20%20.title%20%7B%20font-family%3A%20sans-serif%3B%20font-size%3A%2022px%3B%20font-weight%3A%20700%3B%20fill%3A%20%230e7c6b%3B%20opacity%3A%200.2%3B%20letter-spacing%3A%202px%3B%20%7D%0A%20%20%3C%2Fstyle%3E%0A%3C%2Fdefs%3E%0A%3Cg%20class%3D%22scene%22%20fill%3D%22none%22%20stroke%3D%22%230a2540%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%0A%20%20%3C%21--%20%E2%95%90%E2%95%90%20PHARMACIST%20%28left%2C%20standing%20behind%20counter%29%20%E2%95%90%E2%95%90%20--%3E%0A%20%20%3C%21--%20white%20coat%20--%3E%0A%20%20%3Crect%20x%3D%2280%22%20y%3D%22310%22%20width%3D%2270%22%20height%3D%22120%22%20rx%3D%228%22%20fill%3D%22%23e8f4f8%22%20stroke%3D%22%230a2540%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3C%21--%20collar%20%2F%20lapels%20--%3E%0A%20%20%3Cpath%20d%3D%22M100%20310%20L115%20335%20L130%20310%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3C%21--%20arms%20--%3E%0A%20%20%3Cline%20x1%3D%2280%22%20y1%3D%22340%22%20x2%3D%2248%22%20y2%3D%22390%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%3Cline%20x1%3D%22150%22%20y1%3D%22340%22%20x2%3D%22182%22%20y2%3D%22385%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%3C%21--%20hands%20--%3E%0A%20%20%3Ccircle%20cx%3D%2246%22%20cy%3D%22394%22%20r%3D%226%22%20stroke-width%3D%222%22%20fill%3D%22%23f5d5b8%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22184%22%20cy%3D%22389%22%20r%3D%226%22%20stroke-width%3D%222%22%20fill%3D%22%23f5d5b8%22%2F%3E%0A%20%20%3C%21--%20head%20--%3E%0A%20%20%3Cellipse%20cx%3D%22115%22%20cy%3D%22275%22%20rx%3D%2228%22%20ry%3D%2232%22%20fill%3D%22%23f5d5b8%22%20stroke%3D%22%230a2540%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3C%21--%20hair%20--%3E%0A%20%20%3Cpath%20d%3D%22M87%20265%20Q90%20240%20115%20238%20Q140%20240%20143%20265%22%20fill%3D%22%234a3728%22%20stroke%3D%22%234a3728%22%20stroke-width%3D%221%22%2F%3E%0A%20%20%3C%21--%20eyes%20--%3E%0A%20%20%3Cellipse%20cx%3D%22105%22%20cy%3D%22272%22%20rx%3D%224%22%20ry%3D%224.5%22%20fill%3D%22%232c1810%22%20stroke%3D%22none%22%2F%3E%0A%20%20%3Cellipse%20cx%3D%22125%22%20cy%3D%22272%22%20rx%3D%224%22%20ry%3D%224.5%22%20fill%3D%22%232c1810%22%20stroke%3D%22none%22%2F%3E%0A%20%20%3Cline%20x1%3D%22101%22%20y1%3D%22267%22%20x2%3D%22109%22%20y2%3D%22265%22%20stroke%3D%22%234a3728%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%3Cline%20x1%3D%22121%22%20y1%3D%22265%22%20x2%3D%22129%22%20y2%3D%22267%22%20stroke%3D%22%234a3728%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%3C%21--%20smile%20--%3E%0A%20%20%3Cpath%20d%3D%22M105%20284%20Q115%20292%20125%20284%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3C%21--%20stethoscope%20--%3E%0A%20%20%3Cpath%20d%3D%22M95%20315%20Q70%20340%2068%20360%20Q68%20374%2080%20374%20Q92%20374%2092%20360%20Q92%20346%20104%20340%22%20stroke-width%3D%222.5%22%20stroke%3D%22%231d9e75%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%2268%22%20cy%3D%22375%22%20r%3D%227%22%20stroke%3D%22%231d9e75%22%20stroke-width%3D%222.5%22%2F%3E%0A%20%20%3C%21--%20legs%20--%3E%0A%20%20%3Crect%20x%3D%2292%22%20y%3D%22430%22%20width%3D%2218%22%20height%3D%2280%22%20rx%3D%224%22%20fill%3D%22%232c3e70%22%20stroke%3D%22%232c3e70%22%20stroke-width%3D%221%22%2F%3E%0A%20%20%3Crect%20x%3D%22118%22%20y%3D%22430%22%20width%3D%2218%22%20height%3D%2280%22%20rx%3D%224%22%20fill%3D%22%232c3e70%22%20stroke%3D%22%232c3e70%22%20stroke-width%3D%221%22%2F%3E%0A%20%20%3C%21--%20shoes%20--%3E%0A%20%20%3Cellipse%20cx%3D%22101%22%20cy%3D%22514%22%20rx%3D%2216%22%20ry%3D%228%22%20fill%3D%22%231a1a2e%22%20stroke%3D%22%231a1a2e%22%20stroke-width%3D%221%22%2F%3E%0A%20%20%3Cellipse%20cx%3D%22127%22%20cy%3D%22514%22%20rx%3D%2216%22%20ry%3D%228%22%20fill%3D%22%231a1a2e%22%20stroke%3D%22%231a1a2e%22%20stroke-width%3D%221%22%2F%3E%0A%20%20%3C%21--%20Rx%20badge%20on%20coat%20--%3E%0A%20%20%3Crect%20x%3D%22122%22%20y%3D%22345%22%20width%3D%2224%22%20height%3D%2218%22%20rx%3D%223%22%20fill%3D%22%231d9e75%22%20fill-opacity%3D%220.3%22%20stroke%3D%22%231d9e75%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22125%22%20y%3D%22358%22%20font-family%3D%22serif%22%20font-size%3D%2213%22%20font-weight%3D%22bold%22%20fill%3D%22%230e7c6b%22%20opacity%3D%220.8%22%3ERx%3C%2Ftext%3E%0A%0A%20%20%3C%21--%20%E2%95%90%E2%95%90%20PHARMACY%20COUNTER%20%E2%95%90%E2%95%90%20--%3E%0A%20%20%3Crect%20x%3D%2230%22%20y%3D%22430%22%20width%3D%22260%22%20height%3D%2225%22%20rx%3D%224%22%20fill%3D%22%23c8d8e8%22%20stroke%3D%22%230a2540%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Crect%20x%3D%2230%22%20y%3D%22455%22%20width%3D%22260%22%20height%3D%2260%22%20rx%3D%220%22%20fill%3D%22%23b0c4d8%22%20stroke%3D%22%230a2540%22%20stroke-width%3D%221.5%22%2F%3E%0A%0A%20%20%3C%21--%20%E2%95%90%E2%95%90%20MEDICINE%20BOTTLES%20ON%20COUNTER%20%E2%95%90%E2%95%90%20--%3E%0A%20%20%3C%21--%20Bottle%201%20--%3E%0A%20%20%3Crect%20x%3D%2250%22%20y%3D%22385%22%20width%3D%2222%22%20height%3D%2240%22%20rx%3D%224%22%20fill%3D%22%23e8f0ff%22%20stroke%3D%22%230a2540%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%3Crect%20x%3D%2252%22%20y%3D%22378%22%20width%3D%2218%22%20height%3D%2210%22%20rx%3D%222%22%20fill%3D%22%230a2540%22%2F%3E%0A%20%20%3Crect%20x%3D%2253%22%20y%3D%22396%22%20width%3D%2218%22%20height%3D%2212%22%20rx%3D%221%22%20fill%3D%22%23c0392b%22%20fill-opacity%3D%220.4%22%20stroke%3D%22%23c0392b%22%20stroke-width%3D%221%22%2F%3E%0A%20%20%3C%21--%20Bottle%202%20--%3E%0A%20%20%3Crect%20x%3D%2282%22%20y%3D%22390%22%20width%3D%2226%22%20height%3D%2238%22%20rx%3D%224%22%20fill%3D%22%23fff0e8%22%20stroke%3D%22%230a2540%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%3Crect%20x%3D%2284%22%20y%3D%22383%22%20width%3D%2222%22%20height%3D%2210%22%20rx%3D%222%22%20fill%3D%22%230a2540%22%2F%3E%0A%20%20%3Crect%20x%3D%2285%22%20y%3D%22400%22%20width%3D%2220%22%20height%3D%2214%22%20rx%3D%221%22%20fill%3D%22%231d9e75%22%20fill-opacity%3D%220.4%22%20stroke%3D%22%231d9e75%22%20stroke-width%3D%221%22%2F%3E%0A%20%20%3C%21--%20Bottle%203%20--%3E%0A%20%20%3Crect%20x%3D%22118%22%20y%3D%22393%22%20width%3D%2220%22%20height%3D%2235%22%20rx%3D%224%22%20fill%3D%22%23e8ffe8%22%20stroke%3D%22%230a2540%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%3Crect%20x%3D%22119%22%20y%3D%22386%22%20width%3D%2218%22%20height%3D%229%22%20rx%3D%222%22%20fill%3D%22%230a2540%22%2F%3E%0A%0A%20%20%3C%21--%20%E2%95%90%E2%95%90%20PRESCRIPTION%20PAD%20%E2%95%90%E2%95%90%20--%3E%0A%20%20%3Crect%20x%3D%22155%22%20y%3D%22395%22%20width%3D%2255%22%20height%3D%2235%22%20rx%3D%223%22%20fill%3D%22white%22%20stroke%3D%22%230a2540%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%3Cline%20x1%3D%22160%22%20y1%3D%22405%22%20x2%3D%22205%22%20y2%3D%22405%22%20stroke%3D%22%230a2540%22%20stroke-width%3D%221%22%2F%3E%0A%20%20%3Cline%20x1%3D%22160%22%20y1%3D%22412%22%20x2%3D%22200%22%20y2%3D%22412%22%20stroke%3D%22%230a2540%22%20stroke-width%3D%221%22%2F%3E%0A%20%20%3Cline%20x1%3D%22160%22%20y1%3D%22419%22%20x2%3D%22205%22%20y2%3D%22419%22%20stroke%3D%22%230a2540%22%20stroke-width%3D%221%22%2F%3E%0A%20%20%3Ctext%20x%3D%22160%22%20y%3D%22403%22%20font-family%3D%22serif%22%20font-size%3D%229%22%20fill%3D%22%230a2540%22%20opacity%3D%220.6%22%3ERx%3C%2Ftext%3E%0A%0A%20%20%3C%21--%20%E2%95%90%E2%95%90%20ELDERLY%20PATIENT%20%28right%20of%20counter%2C%20seated%29%20%E2%95%90%E2%95%90%20--%3E%0A%20%20%3C%21--%20wheelchair%20--%3E%0A%20%20%3Ccircle%20cx%3D%22380%22%20cy%3D%22490%22%20r%3D%2232%22%20stroke%3D%22%23888%22%20stroke-width%3D%223%22%20fill%3D%22none%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22320%22%20cy%3D%22500%22%20r%3D%2218%22%20stroke%3D%22%23888%22%20stroke-width%3D%222.5%22%20fill%3D%22none%22%2F%3E%0A%20%20%3Crect%20x%3D%22300%22%20y%3D%22415%22%20width%3D%22120%22%20height%3D%2218%22%20rx%3D%224%22%20fill%3D%22%23c8d8e8%22%20stroke%3D%22%23888%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Crect%20x%3D%22290%22%20y%3D%22433%22%20width%3D%22140%22%20height%3D%2255%22%20rx%3D%226%22%20fill%3D%22%23d8e8f0%22%20stroke%3D%22%23888%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3C%21--%20footrest%20--%3E%0A%20%20%3Cline%20x1%3D%22295%22%20y1%3D%22488%22%20x2%3D%22270%22%20y2%3D%22510%22%20stroke%3D%22%23888%22%20stroke-width%3D%222.5%22%2F%3E%0A%20%20%3Cline%20x1%3D%22295%22%20y1%3D%22510%22%20x2%3D%22260%22%20y2%3D%22510%22%20stroke%3D%22%23888%22%20stroke-width%3D%222.5%22%2F%3E%0A%20%20%3C%21--%20push%20handle%20--%3E%0A%20%20%3Cline%20x1%3D%22420%22%20y1%3D%22415%22%20x2%3D%22420%22%20y2%3D%22370%22%20stroke%3D%22%23888%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%3Cline%20x1%3D%22360%22%20y1%3D%22415%22%20x2%3D%22360%22%20y2%3D%22370%22%20stroke%3D%22%23888%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%3Cline%20x1%3D%22360%22%20y1%3D%22370%22%20x2%3D%22420%22%20y2%3D%22370%22%20stroke%3D%22%23888%22%20stroke-width%3D%223%22%2F%3E%0A%0A%20%20%3C%21--%20Elderly%20patient%20body%20--%3E%0A%20%20%3Crect%20x%3D%22310%22%20y%3D%22340%22%20width%3D%2270%22%20height%3D%2290%22%20rx%3D%228%22%20fill%3D%22%23e8d5c0%22%20stroke%3D%22%230a2540%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3C%21--%20cardigan%20lines%20--%3E%0A%20%20%3Cpath%20d%3D%22M330%20340%20L345%20360%20L360%20340%22%20stroke-width%3D%221.5%22%20stroke%3D%22%238B4513%22%2F%3E%0A%20%20%3Cline%20x1%3D%22330%22%20y1%3D%22365%22%20x2%3D%22375%22%20y2%3D%22365%22%20stroke%3D%22%238B4513%22%20stroke-width%3D%221%22%2F%3E%0A%20%20%3Cline%20x1%3D%22325%22%20y1%3D%22375%22%20x2%3D%22375%22%20y2%3D%22375%22%20stroke%3D%22%238B4513%22%20stroke-width%3D%221%22%2F%3E%0A%20%20%3C%21--%20elderly%20patient%20arms%20--%3E%0A%20%20%3Cline%20x1%3D%22310%22%20y1%3D%22365%22%20x2%3D%22278%22%20y2%3D%22400%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%3Cline%20x1%3D%22380%22%20y1%3D%22365%22%20x2%3D%22410%22%20y2%3D%22395%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%3C%21--%20hands%20on%20lap%20--%3E%0A%20%20%3Cellipse%20cx%3D%22276%22%20cy%3D%22404%22%20rx%3D%2210%22%20ry%3D%227%22%20fill%3D%22%23f0c8a0%22%20stroke%3D%22%230a2540%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%3Cellipse%20cx%3D%22412%22%20cy%3D%22399%22%20rx%3D%2210%22%20ry%3D%227%22%20fill%3D%22%23f0c8a0%22%20stroke%3D%22%230a2540%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%3C%21--%20HOLDING%20PILL%20BOTTLE%20in%20right%20hand%20--%3E%0A%20%20%3Crect%20x%3D%22418%22%20y%3D%22383%22%20width%3D%2214%22%20height%3D%2226%22%20rx%3D%223%22%20fill%3D%22%23fff0e8%22%20stroke%3D%22%230a2540%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%3Crect%20x%3D%22419%22%20y%3D%22378%22%20width%3D%2212%22%20height%3D%227%22%20rx%3D%222%22%20fill%3D%22%230a2540%22%2F%3E%0A%20%20%3C%21--%20elderly%20head%20--%3E%0A%20%20%3Cellipse%20cx%3D%22345%22%20cy%3D%22305%22%20rx%3D%2228%22%20ry%3D%2230%22%20fill%3D%22%23f0c8a0%22%20stroke%3D%22%230a2540%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3C%21--%20white%2Fgrey%20hair%20--%3E%0A%20%20%3Cpath%20d%3D%22M317%20295%20Q320%20270%20345%20268%20Q370%20270%20373%20295%22%20fill%3D%22%23d0d0d0%22%20stroke%3D%22%23b0b0b0%22%20stroke-width%3D%221%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M317%20295%20Q315%20282%20320%20278%22%20fill%3D%22%23d0d0d0%22%20stroke%3D%22%23b0b0b0%22%20stroke-width%3D%221%22%2F%3E%0A%20%20%3C%21--%20wrinkle%20lines%20--%3E%0A%20%20%3Cpath%20d%3D%22M325%20295%20Q330%20292%20325%20288%22%20stroke-width%3D%221%22%20opacity%3D%220.4%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M358%20288%20Q363%20292%20358%20295%22%20stroke-width%3D%221%22%20opacity%3D%220.4%22%2F%3E%0A%20%20%3C%21--%20eyes%20--%3E%0A%20%20%3Cellipse%20cx%3D%22333%22%20cy%3D%22300%22%20rx%3D%224%22%20ry%3D%224%22%20fill%3D%22%235a3e28%22%20stroke%3D%22none%22%2F%3E%0A%20%20%3Cellipse%20cx%3D%22357%22%20cy%3D%22300%22%20rx%3D%224%22%20ry%3D%224%22%20fill%3D%22%235a3e28%22%20stroke%3D%22none%22%2F%3E%0A%20%20%3C%21--%20glasses%20--%3E%0A%20%20%3Crect%20x%3D%22323%22%20y%3D%22295%22%20width%3D%2216%22%20height%3D%2211%22%20rx%3D%225%22%20stroke%3D%22%234a3728%22%20stroke-width%3D%221.5%22%20fill%3D%22none%22%2F%3E%0A%20%20%3Crect%20x%3D%22347%22%20y%3D%22295%22%20width%3D%2216%22%20height%3D%2211%22%20rx%3D%225%22%20stroke%3D%22%234a3728%22%20stroke-width%3D%221.5%22%20fill%3D%22none%22%2F%3E%0A%20%20%3Cline%20x1%3D%22339%22%20y1%3D%22300%22%20x2%3D%22347%22%20y2%3D%22300%22%20stroke%3D%22%234a3728%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%3Cline%20x1%3D%22310%22%20y1%3D%22299%22%20x2%3D%22323%22%20y2%3D%22299%22%20stroke%3D%22%234a3728%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%3Cline%20x1%3D%22363%22%20y1%3D%22299%22%20x2%3D%22376%22%20y2%3D%22299%22%20stroke%3D%22%234a3728%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%3C%21--%20gentle%20smile%20--%3E%0A%20%20%3Cpath%20d%3D%22M334%20312%20Q345%20320%20356%20312%22%20stroke-width%3D%222%22%2F%3E%0A%0A%20%20%3C%21--%20%E2%95%90%E2%95%90%20SPEECH%20BUBBLE%20from%20pharmacist%20%E2%95%90%E2%95%90%20--%3E%0A%20%20%3Crect%20x%3D%22195%22%20y%3D%22200%22%20width%3D%22160%22%20height%3D%2265%22%20rx%3D%2212%22%20fill%3D%22white%22%20stroke%3D%22%231d9e75%22%20stroke-width%3D%222.5%22%2F%3E%0A%20%20%3Cpolygon%20points%3D%22230%2C265%20215%2C285%20250%2C265%22%20fill%3D%22white%22%20stroke%3D%22%231d9e75%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Ctext%20x%3D%22210%22%20y%3D%22222%22%20font-family%3D%22sans-serif%22%20font-size%3D%2211%22%20fill%3D%22%230a2540%22%20opacity%3D%220.8%22%3ECheck%20interactions%3A%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22208%22%20y%3D%22238%22%20font-family%3D%22sans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23c0392b%22%20opacity%3D%220.8%22%3E%E2%9A%A0%20Warfarin%20%2B%20Clarith.%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22208%22%20y%3D%22253%22%20font-family%3D%22sans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23b45309%22%20opacity%3D%220.8%22%3E%E2%9A%A0%20Beers%20Criteria%20%C3%973%3C%2Ftext%3E%0A%0A%20%20%3C%21--%20%E2%95%90%E2%95%90%20MEDICATION%20LIST%20clipboard%20%E2%95%90%E2%95%90%20--%3E%0A%20%20%3Crect%20x%3D%22450%22%20y%3D%22300%22%20width%3D%22120%22%20height%3D%22160%22%20rx%3D%225%22%20fill%3D%22white%22%20stroke%3D%22%230a2540%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Crect%20x%3D%22490%22%20y%3D%22290%22%20width%3D%2240%22%20height%3D%2218%22%20rx%3D%224%22%20fill%3D%22%230a2540%22%2F%3E%0A%20%20%3Ctext%20x%3D%22458%22%20y%3D%22325%22%20font-family%3D%22sans-serif%22%20font-size%3D%229%22%20fill%3D%22%230a2540%22%20opacity%3D%220.7%22%20font-weight%3D%22bold%22%3EMEDICATION%20LIST%3C%2Ftext%3E%0A%20%20%3Cline%20x1%3D%22458%22%20y1%3D%22332%22%20x2%3D%22562%22%20y2%3D%22332%22%20stroke%3D%22%23dde3ec%22%20stroke-width%3D%221%22%2F%3E%0A%20%20%3Ctext%20x%3D%22458%22%20y%3D%22347%22%20font-family%3D%22sans-serif%22%20font-size%3D%228.5%22%20fill%3D%22%230a2540%22%20opacity%3D%220.6%22%3E1.%20Warfarin%205mg%20OD%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22458%22%20y%3D%22362%22%20font-family%3D%22sans-serif%22%20font-size%3D%228.5%22%20fill%3D%22%23c0392b%22%20opacity%3D%220.7%22%3E2.%20Clarithromycin%20%E2%9A%A0%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22458%22%20y%3D%22377%22%20font-family%3D%22sans-serif%22%20font-size%3D%228.5%22%20fill%3D%22%23c0392b%22%20opacity%3D%220.7%22%3E3.%20Diphenhydramine%20%E2%9A%A0%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22458%22%20y%3D%22392%22%20font-family%3D%22sans-serif%22%20font-size%3D%228.5%22%20fill%3D%22%23c0392b%22%20opacity%3D%220.7%22%3E4.%20Glibenclamide%20%E2%9A%A0%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22458%22%20y%3D%22407%22%20font-family%3D%22sans-serif%22%20font-size%3D%228.5%22%20fill%3D%22%23c0392b%22%20opacity%3D%220.7%22%3E5.%20Diclofenac%20%E2%9A%A0%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22458%22%20y%3D%22422%22%20font-family%3D%22sans-serif%22%20font-size%3D%228.5%22%20fill%3D%22%23b45309%22%20opacity%3D%220.7%22%3E6.%20Metformin%20%28%E2%86%93dose%29%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22458%22%20y%3D%22437%22%20font-family%3D%22sans-serif%22%20font-size%3D%228.5%22%20fill%3D%22%230a2540%22%20opacity%3D%220.6%22%3E7.%20Amlodipine%205mg%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22458%22%20y%3D%22452%22%20font-family%3D%22sans-serif%22%20font-size%3D%228.5%22%20fill%3D%22%230a2540%22%20opacity%3D%220.6%22%3E8.%20Atorvastatin%2020mg%3C%2Ftext%3E%0A%0A%20%20%3C%21--%20%E2%95%90%E2%95%90%20LARGE%20PHARMACOVIGILANCE%20SHIELD%20center%20right%20%E2%95%90%E2%95%90%20--%3E%0A%20%20%3Cpath%20d%3D%22M620%2C180%20L720%2C180%20L720%2C250%20Q720%2C310%20670%2C330%20Q620%2C310%20620%2C250%20Z%22%20stroke-width%3D%223%22%20fill%3D%22%23e1f5ee%22%20stroke%3D%22%231d9e75%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M640%2C255%20L660%2C275%20L702%2C230%22%20stroke-width%3D%225%22%20stroke%3D%22%231d9e75%22%2F%3E%0A%20%20%3Ctext%20x%3D%22630%22%20y%3D%22345%22%20font-family%3D%22sans-serif%22%20font-size%3D%2211%22%20fill%3D%22%230e7c6b%22%20opacity%3D%220.6%22%20font-weight%3D%22bold%22%3EPHARMACOVIGILANCE%3C%2Ftext%3E%0A%0A%20%20%3C%21--%20%E2%95%90%E2%95%90%20LARGE%20Rx%20symbol%20far%20right%20%E2%95%90%E2%95%90%20--%3E%0A%20%20%3Ctext%20x%3D%22780%22%20y%3D%22320%22%20font-family%3D%22serif%22%20font-size%3D%22130%22%20font-weight%3D%22bold%22%20fill%3D%22%230a2540%22%20fill-opacity%3D%220.06%22%20stroke%3D%22%230a2540%22%20stroke-width%3D%221%22%3ERx%3C%2Ftext%3E%0A%0A%20%20%3C%21--%20%E2%95%90%E2%95%90%20DNA%20helix%20far%20right%20%E2%95%90%E2%95%90%20--%3E%0A%20%20%3Cpath%20d%3D%22M960%2C60%20Q985%2C100%20960%2C140%20Q935%2C180%20960%2C220%20Q985%2C260%20960%2C300%20Q935%2C340%20960%2C380%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M1000%2C60%20Q975%2C100%201000%2C140%20Q1025%2C180%201000%2C220%20Q975%2C260%201000%2C300%20Q1025%2C340%201000%2C380%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%3Cline%20x1%3D%22960%22%20y1%3D%2288%22%20x2%3D%221000%22%20y2%3D%22112%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Cline%20x1%3D%22960%22%20y1%3D%22140%22%20x2%3D%221000%22%20y2%3D%22140%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Cline%20x1%3D%22960%22%20y1%3D%22192%22%20x2%3D%221000%22%20y2%3D%22168%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Cline%20x1%3D%22960%22%20y1%3D%22220%22%20x2%3D%221000%22%20y2%3D%22220%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Cline%20x1%3D%22960%22%20y1%3D%22272%22%20x2%3D%221000%22%20y2%3D%22248%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Cline%20x1%3D%22960%22%20y1%3D%22300%22%20x2%3D%221000%22%20y2%3D%22300%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Cline%20x1%3D%22960%22%20y1%3D%22352%22%20x2%3D%221000%22%20y2%3D%22328%22%20stroke-width%3D%222%22%2F%3E%0A%0A%20%20%3C%21--%20%E2%95%90%E2%95%90%20ECG%20line%20at%20bottom%20%E2%95%90%E2%95%90%20--%3E%0A%20%20%3Cpolyline%20points%3D%220%2C820%2080%2C820%20105%2C760%20120%2C880%20138%2C740%20155%2C820%20240%2C820%20265%2C820%20280%2C800%20290%2C835%20302%2C810%20315%2C820%20500%2C820%20525%2C820%20540%2C790%20550%2C845%20562%2C805%20576%2C820%20760%2C820%20785%2C820%20800%2C795%20810%2C840%20822%2C808%20836%2C820%201020%2C820%201045%2C820%201060%2C785%201070%2C848%201082%2C805%201096%2C820%201400%2C820%22%20stroke-width%3D%222.5%22%20stroke%3D%22%231d9e75%22%2F%3E%0A%0A%20%20%3C%21--%20%E2%95%90%E2%95%90%20Large%20warning%20triangle%20bottom%20left%20%E2%95%90%E2%95%90%20--%3E%0A%20%20%3Cpolygon%20points%3D%2280%2C700%20160%2C560%20240%2C700%22%20stroke-width%3D%223%22%20fill%3D%22%23fff8e0%22%20stroke%3D%22%23b45309%22%2F%3E%0A%20%20%3Cline%20x1%3D%22160%22%20y1%3D%22590%22%20x2%3D%22160%22%20y2%3D%22660%22%20stroke-width%3D%224%22%20stroke%3D%22%23b45309%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22160%22%20cy%3D%22678%22%20r%3D%225%22%20fill%3D%22%23b45309%22%20stroke%3D%22none%22%2F%3E%0A%20%20%3Ctext%20x%3D%22100%22%20y%3D%22730%22%20font-family%3D%22sans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23b45309%22%20opacity%3D%220.5%22%3EADVERSE%20DRUG%20REACTION%3C%2Ftext%3E%0A%0A%20%20%3C%21--%20%E2%95%90%E2%95%90%20Beers%20Criteria%20badge%20bottom%20center%20%E2%95%90%E2%95%90%20--%3E%0A%20%20%3Crect%20x%3D%22540%22%20y%3D%22650%22%20width%3D%22180%22%20height%3D%2260%22%20rx%3D%2210%22%20fill%3D%22%23fef2f2%22%20stroke%3D%22%23c0392b%22%20stroke-width%3D%222.5%22%2F%3E%0A%20%20%3Ctext%20x%3D%22565%22%20y%3D%22676%22%20font-family%3D%22sans-serif%22%20font-size%3D%2213%22%20font-weight%3D%22bold%22%20fill%3D%22%23c0392b%22%20opacity%3D%220.5%22%3EBEERS%20CRITERIA%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22558%22%20y%3D%22697%22%20font-family%3D%22sans-serif%22%20font-size%3D%2210%22%20fill%3D%22%23c0392b%22%20opacity%3D%220.45%22%3EInappropriate%20in%20Elderly%20%E2%89%A565y%3C%2Ftext%3E%0A%0A%20%20%3C%21--%20%E2%95%90%E2%95%90%20QoL%20text%20top%20right%20%E2%95%90%E2%95%90%20--%3E%0A%20%20%3Ctext%20x%3D%221050%22%20y%3D%22120%22%20font-family%3D%22sans-serif%22%20font-size%3D%2236%22%20font-weight%3D%22bold%22%20fill%3D%22%231d9e75%22%20fill-opacity%3D%220.12%22%3EQuality%20of%20Life%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%221100%22%20y%3D%22160%22%20font-family%3D%22sans-serif%22%20font-size%3D%2220%22%20fill%3D%22%230a2540%22%20fill-opacity%3D%220.1%22%3EMedication%20Safety%3C%2Ftext%3E%0A%0A%20%20%3C%21--%20%E2%95%90%E2%95%90%20Molecule%20top%20center%20%E2%95%90%E2%95%90%20--%3E%0A%20%20%3Ccircle%20cx%3D%22700%22%20cy%3D%2280%22%20r%3D%2212%22%20stroke-width%3D%222.5%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22740%22%20cy%3D%2250%22%20r%3D%2210%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22760%22%20cy%3D%2290%22%20r%3D%2210%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22740%22%20cy%3D%22120%22%20r%3D%2210%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%22700%22%20cy%3D%22120%22%20r%3D%228%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Cline%20x1%3D%22700%22%20y1%3D%2280%22%20x2%3D%22740%22%20y2%3D%2250%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Cline%20x1%3D%22740%22%20y1%3D%2250%22%20x2%3D%22760%22%20y2%3D%2290%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Cline%20x1%3D%22760%22%20y1%3D%2290%22%20x2%3D%22740%22%20y2%3D%22120%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Cline%20x1%3D%22740%22%20y1%3D%22120%22%20x2%3D%22700%22%20y2%3D%22120%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Cline%20x1%3D%22700%22%20y1%3D%22120%22%20x2%3D%22700%22%20y2%3D%2280%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%3Ctext%20x%3D%22694%22%20y%3D%2285%22%20font-family%3D%22sans-serif%22%20font-size%3D%229%22%20fill%3D%22%230a2540%22%20opacity%3D%220.5%22%3EC%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22734%22%20y%3D%2255%22%20font-family%3D%22sans-serif%22%20font-size%3D%229%22%20fill%3D%22%230a2540%22%20opacity%3D%220.5%22%3EN%3C%2Ftext%3E%0A%20%20%3Ctext%20x%3D%22754%22%20y%3D%2295%22%20font-family%3D%22sans-serif%22%20font-size%3D%229%22%20fill%3D%22%230a2540%22%20opacity%3D%220.5%22%3EO%3C%2Ftext%3E%0A%0A%3C%2Fg%3E%0A%3C%2Fsvg%3E%0A");
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  opacity:1;
+}
+
+/* Frosted overlay so content stays readable */
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  background:rgba(240,244,248,0.70);
+}
+
+/* Make all content sit above the background */
+.hdr,.app-inner,.sidebar,.main{position:relative;z-index:1}
+.login-wrap{position:relative;z-index:2}ex;align-items:center;justify-content:space-between;height:56px;border-bottom:3px solid var(--accent);position:sticky;top:0;z-index:50}
 .hdr-brand{display:flex;align-items:center;gap:10px}
-.hdr-logo{width:34px;height:34px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hdr-logo{width:40px;height:40px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .hdr-logo svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round}
 .brand-t{font-size:15px;font-weight:700}
 .brand-s{font-size:11px;color:#9bb8d3}
@@ -26,9 +51,9 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--surface);co
 .btn-lo{font-size:12px;color:#9bb8d3;background:none;border:none;cursor:pointer;font-family:inherit;padding:4px 8px;border-radius:5px}
 .btn-lo:hover{color:#fff;background:rgba(255,255,255,0.1)}
 /* ── LOGIN ── */
-.login-wrap{min-height:100vh;background:var(--navy);display:flex;align-items:center;justify-content:center;padding:20px}
+.login-wrap{min-height:100vh;background:rgba(10,37,64,0.75);display:flex;align-items:center;justify-content:center;padding:20px}
 .login-box{background:#fff;border-radius:18px;padding:40px 36px;width:100%;max-width:420px;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
-.login-logo{width:56px;height:56px;background:var(--navy);border-radius:14px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center}
+.login-logo{width:80px;height:80px;background:var(--navy);border-radius:18px;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;padding:6px}
 .login-logo svg{width:28px;height:28px;fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round}
 .login-t{font-size:22px;font-weight:700;text-align:center;color:var(--navy);margin-bottom:4px}
 .login-s{font-size:12px;color:var(--text3);text-align:center;margin-bottom:28px;line-height:1.5}
@@ -239,7 +264,27 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--surface);co
 <div id="loginScreen" class="login-wrap">
   <div class="login-box">
     <div class="login-logo">
-      <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      <svg viewBox="0 0 64 64" width="42" height="42" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Person/pharmacist in white coat -->
+  <circle cx="22" cy="14" r="7" fill="#1d9e75" fill-opacity="0.25" stroke="#1d9e75" stroke-width="2"/>
+  <path d="M8 48 Q8 32 22 32 Q36 32 36 48" fill="#1d9e75" fill-opacity="0.2" stroke="#1d9e75" stroke-width="2"/>
+  <!-- White coat collar lines -->
+  <line x1="18" y1="32" x2="22" y2="40" stroke="#1d9e75" stroke-width="1.5"/>
+  <line x1="26" y1="32" x2="22" y2="40" stroke="#1d9e75" stroke-width="1.5"/>
+  <!-- Stethoscope -->
+  <path d="M14 36 Q10 42 10 46 Q10 50 14 50 Q18 50 18 46" stroke="#0a2540" stroke-width="1.8" fill="none"/>
+  <circle cx="14" cy="51" r="2.5" stroke="#0a2540" stroke-width="1.5"/>
+  <!-- Large shield -->
+  <path d="M38 18 L56 24 L56 36 Q56 50 47 55 Q38 50 38 36 Z" fill="rgba(29,158,117,0.12)" stroke="#0a2540" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Rx inside shield -->
+  <text x="40" y="42" font-family="serif" font-size="16" font-weight="bold" fill="#0a2540" opacity="0.7">Rx</text>
+  <!-- Small checkmark on shield -->
+  <path d="M42 30 L46 34 L54 24" stroke="#1d9e75" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Pill capsule below -->
+  <rect x="10" y="54" width="30" height="9" rx="4.5" fill="none" stroke="#0a2540" stroke-width="1.8"/>
+  <line x1="25" y1="54" x2="25" y2="63" stroke="#0a2540" stroke-width="1.8"/>
+  <rect x="10" y="54" width="15" height="9" rx="4.5" fill="#1d9e75" fill-opacity="0.3" stroke="none"/>
+</svg>
     </div>
     <div class="login-t">ClinicalEd Platform</div>
     <div class="login-s">Imam Abdulrahman Bin Faisal University<br>Pharmacovigilance &amp; Geriatric Medicine Training</div>
@@ -272,7 +317,15 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--surface);co
   <div class="hdr">
     <div class="hdr-brand">
       <div class="hdr-logo">
-        <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        <svg viewBox="0 0 32 32" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Person/pharmacist silhouette -->
+  <circle cx="11" cy="8" r="4" fill="white" opacity="0.9"/>
+  <path d="M4 26 Q4 18 11 18 Q18 18 18 26" fill="white" opacity="0.9"/>
+  <!-- Shield right side -->
+  <path d="M20 10 L29 13 L29 20 Q29 26 24.5 28 Q20 26 20 20 Z" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="1.6" stroke-linejoin="round"/>
+  <!-- Rx inside shield -->
+  <text x="21.5" y="22" font-family="serif" font-size="8" font-weight="bold" fill="white" opacity="0.95">Rx</text>
+</svg>
       </div>
       <div>
         <div class="brand-t">ClinicalEd — IAU</div>
@@ -332,6 +385,7 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--surface);co
           <span class="si"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>My Reflection
         </button>
       </div>
+      <!-- Student Access page is INSTRUCTOR ONLY - not shown to students -->
     </div>
 
     <!-- MAIN CONTENT -->
@@ -675,13 +729,20 @@ body{font-family:system-ui,-apple-system,sans-serif;background:var(--surface);co
 // ═══════════════════════════════════════════
 const CREDS = { username: 'Dr. Muflih', instPassword: 'MuflihIAU2026', studPassword: 'Muflih2026@IAU' };
 
-// On page load: validate localStorage - clear it if it has no real patient data
+// On page load: validate localStorage - clear if old version (only 1 patient)
 (function() {
   try {
+    var DATA_VERSION = 'v5_counsel_dom';
+    var storedV = localStorage.getItem('iau_data_version');
+    if (storedV !== DATA_VERSION) {
+      localStorage.removeItem('iau_patients');
+      localStorage.removeItem('iau_questions');
+      localStorage.setItem('iau_data_version', DATA_VERSION);
+    }
     var lsP = localStorage.getItem('iau_patients');
     if (lsP) {
       var parsed = JSON.parse(lsP);
-      if (!parsed || !parsed.length || !parsed[0].fname) {
+      if (!parsed || parsed.length < 2 || !parsed[0].fname) {
         localStorage.removeItem('iau_patients');
         localStorage.removeItem('iau_questions');
       }
@@ -795,6 +856,298 @@ const SAMPLE_QS = [
    opts:['Diazepam 5 mg nightly — safe benzodiazepine alternative','Diphenhydramine at a reduced dose of 12.5 mg','Cognitive Behavioural Therapy for Insomnia (CBT-I) and sleep hygiene, with low-dose melatonin if pharmacotherapy is needed','Zolpidem 10 mg nightly — non-benzodiazepine hypnotic is safe in elderly'], correct:2},
 ];
 
+
+const AHMAD = {
+  fname:'Ahmad', lname:'Al-Zahrani', age:67, gender:'m', mrn:'MRN-HF-002',
+  occ:'Retired Engineer', edu:'University',
+  cc:'Progressive shortness of breath, ankle swelling, and palpitations over the past 3 weeks',
+  dx:[
+    'Heart Failure with Reduced Ejection Fraction (HFrEF) — EF 35% (diagnosed 5 years ago)',
+    'Type 2 Diabetes Mellitus (diagnosed 10 years ago, poorly controlled)',
+    'Atrial Fibrillation (persistent, non-valvular — diagnosed 1 year ago)',
+    'Hypertension (on treatment, 12 years)',
+    'Chronic Kidney Disease Stage 2 (eGFR 68 mL/min/1.73m²)',
+    'Hyperlipidaemia (on statin therapy)'
+  ],
+  hpi:'A 67-year-old retired engineer presents with a 3-week history of worsening exertional dyspnoea (now at rest), orthopnoea requiring 3 pillows, bilateral ankle oedema, and palpitations. He reports a 4 kg weight gain over 2 weeks. He has a known history of heart failure for 5 years with EF of 35%, Type 2 DM for 10 years, and was recently diagnosed with persistent atrial fibrillation 1 year ago. He has NOT been started on anticoagulation despite the AFib diagnosis. His current HF medications were last reviewed 6 months ago and he admits to poor medication adherence and high salt intake.',
+  pmh:'Hospitalised twice for acute decompensated heart failure (2022, 2023). No prior stroke or TIA. No history of bleeding disorders. No prior cardiac procedures. Previous MI (inferior, 2019).',
+  fhx:'Father: died of stroke age 71. Mother: Type 2 DM, hypertension. Brother: coronary artery disease.',
+  shx:'Retired. Lives with wife. Ex-smoker (stopped 8 years ago, 20 pack-years). No alcohol. Sedentary lifestyle. Reports eating salty foods. Adherence to medications is poor — often misses doses.',
+  allerg:'Codeine — nausea and vomiting',
+  meds:[
+    {name:'Bisoprolol', dose:'5 mg', freq:'Once daily', route:'PO', flags:[], flagNote:''},
+    {name:'Ramipril (ACE inhibitor)', dose:'5 mg', freq:'Once daily', route:'PO', flags:['ddi'], flagNote:'DDI ⚡: ACE inhibitor + Spironolactone → HYPERKALAEMIA risk (K+ already 5.5 mmol/L). Monitor potassium closely. Also: Ramipril + NSAIDs → reduced antihypertensive effect and renal impairment.'},
+    {name:'Furosemide', dose:'40 mg', freq:'Once daily', route:'PO', flags:[], flagNote:'Loop diuretic for volume overload. Dose may need uptitration given current decompensation.'},
+    {name:'Spironolactone', dose:'25 mg', freq:'Once daily', route:'PO', flags:['ddi'], flagNote:'DDI ⚡: Spironolactone + Ramipril → additive hyperkalaemia risk (K+ = 5.5). Spironolactone + Digoxin → Spironolactone can increase Digoxin levels by reducing renal clearance — monitor Digoxin toxicity.'},
+    {name:'Digoxin', dose:'0.125 mg', freq:'Once daily', route:'PO', flags:['ddi'], flagNote:'DDI ⚡: Digoxin + Spironolactone → increased Digoxin levels (toxicity risk). Digoxin + Furosemide → hypokalaemia from Furosemide increases Digoxin toxicity risk. Narrow therapeutic index — check Digoxin levels and electrolytes.'},
+    {name:'Metformin', dose:'1000 mg', freq:'Twice daily', route:'PO', flags:['ddi'], flagNote:'Caution ⚠: Metformin in Heart Failure + CKD — risk of lactic acidosis during acute decompensation or contrast procedures. Current eGFR 68 is acceptable but watch closely if eGFR falls. HOLD during hospitalisation.'},
+    {name:'Atorvastatin', dose:'40 mg', freq:'Once daily at night', route:'PO', flags:[], flagNote:''},
+    {name:'Amlodipine', dose:'5 mg', freq:'Once daily', route:'PO', flags:['ddi'], flagNote:'Caution ⚠: Amlodipine (dihydropyridine CCB) is generally safe in HF but can worsen fluid retention — may be contributing to ankle oedema. Consider reviewing. Negative inotropes (verapamil, diltiazem) are contraindicated in HFrEF — Amlodipine is acceptable but monitor.'},
+    {name:'Aspirin', dose:'75 mg', freq:'Once daily', route:'PO', flags:['ddi'], flagNote:'DDI ⚡: Aspirin + Ramipril → Aspirin can reduce the vasodilatory benefit of ACE inhibitors. In AFib with HFrEF, anticoagulation (NOT aspirin) is the correct therapy. Aspirin alone is INSUFFICIENT for stroke prevention in AFib — this is a major prescribing omission.'},
+    {name:'Amiodarone', dose:'200 mg', freq:'Once daily', route:'PO', flags:['ddi'], flagNote:'MAJOR DDI ⚡⚡: (1) Amiodarone + Digoxin → Amiodarone inhibits P-glycoprotein and renal clearance of Digoxin, DOUBLING Digoxin plasma levels → severe toxicity risk (bradycardia, heart block, ventricular arrhythmia). Digoxin dose MUST be halved when Amiodarone is started. (2) Amiodarone + Atorvastatin → inhibits CYP3A4 → increased statin levels → risk of myopathy and rhabdomyolysis. Maximum Atorvastatin dose with Amiodarone = 20mg/day. (3) Amiodarone itself causes pulmonary toxicity, thyroid dysfunction, and hepatotoxicity with long-term use — requires regular monitoring (TFTs, LFTs, CXR).'},
+  ],
+  vitals:{bp:'148/92', hr:88, temp:36.8, spo2:94, wt:89, egfr:68, k:5.5, na:136, inr:1.1, hba1c:8.4, cr:'102 µmol/L'},
+  labs:[
+    {name:'BNP (B-natriuretic peptide)', val:'820 pg/mL', ref:'<100 pg/mL', status:'hi', note:'Markedly elevated — confirms acute decompensated HF'},
+    {name:'Echocardiogram EF', val:'35%', ref:'≥55%', status:'hi', note:'Reduced EF — HFrEF confirmed'},
+    {name:'Potassium (K+)', val:'5.5', ref:'3.5–5.1 mmol/L', status:'hi', note:'Hyperkalaemia — ACE inhibitor + Spironolactone effect'},
+    {name:'Sodium (Na+)', val:'136', ref:'135–145 mmol/L', status:'ok', note:'Normal'},
+    {name:'eGFR', val:'68', ref:'≥60 mL/min/1.73m²', status:'ok', note:'CKD Stage 2 — monitor closely'},
+    {name:'Creatinine', val:'102', ref:'44–97 µmol/L', status:'hi', note:'Mildly elevated'},
+    {name:'HbA1c', val:'8.4%', ref:'<7.0%', status:'hi', note:'Poorly controlled diabetes'},
+    {name:'Digoxin level', val:'1.8 ng/mL', ref:'0.5–0.9 ng/mL', status:'hi', note:'SUPRATHERAPEUTIC — toxicity risk (nausea, bradycardia, arrhythmia)'},
+    {name:'INR', val:'1.1', ref:'2.0–3.0 (if on anticoagulation)', status:'ok', note:'NOT on anticoagulation — major omission in AFib patient'},
+    {name:'Fasting Blood Glucose', val:'11.2 mmol/L', ref:'3.9–5.6 mmol/L', status:'hi', note:'Poorly controlled'},
+    {name:'Total Cholesterol', val:'5.1 mmol/L', ref:'<4.0 mmol/L', status:'hi', note:'Above target on statin'},
+    {name:'Haemoglobin', val:'11.4 g/dL', ref:'13.5–17.5 g/dL', status:'hi', note:'Mild anaemia — worsening HF symptoms'},
+  ]
+};
+
+const AHMAD_QS = [
+  {id:'aq1', ptId:1,
+   text:'Calculate this patient\'s CHA₂DS₂-VASc score. Based on the patient\'s risk factors (age 67, male, heart failure, diabetes, hypertension, prior MI), what is his score and stroke risk category?',
+   cat:'Pharmacovigilance',
+   exp:'CHA₂DS₂-VASc scoring: C=Congestive HF (+1), H=Hypertension (+1), A₂=Age 65-74 (+1), D=Diabetes (+1), S₂=Prior stroke/TIA (0), V=Vascular disease/MI (+1), A=Age (already counted), Sc=Sex category male (0). Total = 5 points. A score of ≥2 in males indicates HIGH stroke risk and mandates oral anticoagulation therapy. Annual stroke risk ~6.7%.',
+   opts:[
+     'Score 2 — Low risk, aspirin is sufficient',
+     'Score 3 — Moderate risk, consider anticoagulation',
+     'Score 5 — High risk, oral anticoagulation is mandatory',
+     'Score 1 — No treatment needed'
+   ], correct:2},
+
+  {id:'aq2', ptId:1,
+   text:'This patient with AFib has been on Aspirin 75mg only. What is the most appropriate anticoagulation management?',
+   cat:'Management',
+   exp:'Aspirin is NOT recommended for stroke prevention in AFib — it provides little benefit and carries similar bleeding risk to anticoagulants. With a CHA₂DS₂-VASc score of 5, this patient has a HIGH stroke risk and requires oral anticoagulation. A Direct Oral Anticoagulant (DOAC) such as Apixaban or Rivaroxaban is preferred over Warfarin in non-valvular AFib due to better efficacy, safety profile, and no INR monitoring requirement. Apixaban is particularly preferred in HF patients with renal impairment.',
+   opts:[
+     'Continue Aspirin 75mg — it is sufficient for AFib stroke prevention',
+     'Add Clopidogrel to Aspirin for dual antiplatelet therapy',
+     'Start a Direct Oral Anticoagulant (DOAC) such as Apixaban — Aspirin alone is insufficient',
+     'Start Warfarin and monitor INR monthly'
+   ], correct:2},
+
+  {id:'aq3', ptId:1,
+   text:'The patient\'s Digoxin level is 1.8 ng/mL (therapeutic range 0.5–0.9 ng/mL). Which drug interaction is MOST likely responsible for this supratherapeutic level?',
+   cat:'Drug Interactions',
+   exp:'Spironolactone reduces renal tubular secretion of Digoxin, increasing its plasma concentration. Additionally, Furosemide causes hypokalaemia which sensitises the myocardium to Digoxin toxicity — even at normal levels. The combination of elevated Digoxin level + hypokalaemia risk = high risk of Digoxin toxicity (symptoms: nausea, vomiting, bradycardia, visual disturbances, life-threatening arrhythmias). Action: reduce Digoxin dose, check electrolytes, monitor ECG.',
+   opts:[
+     'Atorvastatin inhibits Digoxin metabolism via CYP3A4',
+     'Spironolactone reduces renal Digoxin clearance, and Furosemide-induced hypokalaemia increases Digoxin toxicity risk',
+     'Metformin displaces Digoxin from plasma protein binding',
+     'Bisoprolol competes with Digoxin at cardiac receptors'
+   ], correct:1},
+
+  {id:'aq4', ptId:1,
+   text:'The patient\'s potassium is 5.5 mmol/L (hyperkalaemia). Which drug combination is MOST responsible and what is the appropriate action?',
+   cat:'Drug Interactions',
+   exp:'Both Ramipril (ACE inhibitor) and Spironolactone (aldosterone antagonist) independently cause potassium retention by reducing aldosterone-mediated potassium excretion. Used together, they have an additive hyperkalaemic effect. With K+ at 5.5 mmol/L, the risk of life-threatening cardiac arrhythmia is real. Action: reduce or temporarily withhold Spironolactone, dietary potassium restriction, recheck electrolytes within 48-72 hours. If K+ >6.0, consider Patiromer or Sodium Zirconium Cyclosilicate (potassium binders).',
+   opts:[
+     'Furosemide + Digoxin causing potassium accumulation',
+     'Ramipril (ACE inhibitor) + Spironolactone — both cause potassium retention with additive hyperkalaemia risk',
+     'Metformin + Atorvastatin causing renal tubular dysfunction',
+     'Amlodipine causing aldosterone excess'
+   ], correct:1},
+
+  {id:'aq5', ptId:1,
+   text:'Which additional evidence-based HFrEF therapy is this patient MISSING that should be added to improve his mortality and morbidity outcomes?',
+   cat:'Management',
+   exp:'Current HFrEF guidelines (ESC 2021, ACC/AHA 2022) recommend the "Fantastic Four" — four pillars of HFrEF therapy: (1) ACE inhibitor/ARB/ARNI ✓, (2) Beta-blocker ✓, (3) MRA/Spironolactone ✓, (4) SGLT-2 inhibitor (Dapagliflozin or Empagliflozin) ✗ MISSING. SGLT-2 inhibitors reduce HF hospitalisations by 25% and cardiovascular death by 11% in HFrEF regardless of diabetes. This patient also benefits from the glucose-lowering effect. Dapagliflozin 10mg daily should be added.',
+   opts:[
+     'Digoxin dose increase — higher levels improve cardiac contractility',
+     'Adding Furosemide at a higher dose — main issue is under-diuresis',
+     'Adding an SGLT-2 inhibitor (Dapagliflozin/Empagliflozin) — a proven HFrEF therapy currently missing from his regimen',
+     'Starting Amiodarone for rate control in AFib'
+   ], correct:2},
+
+  {id:'aq6', ptId:1,
+   text:'Why should Metformin be used with caution in this patient during acute decompensated heart failure, and what should be done?',
+   cat:'Renal Dosing',
+   exp:'Metformin is associated with lactic acidosis risk when tissue perfusion is reduced — as occurs in acute decompensated heart failure where cardiac output is low. During hospitalisation for acute HF, Metformin should be HELD as renal perfusion may deteriorate rapidly, increasing metformin accumulation and lactic acidosis risk. Additionally, if contrast imaging (e.g. CT angiography, cardiac catheterisation) is planned, Metformin must be withheld 48 hours before and after. Alternative: SGLT-2 inhibitor (Dapagliflozin) addresses both HF and diabetes simultaneously.',
+   opts:[
+     'Metformin causes direct cardiotoxicity in HF and must be permanently stopped',
+     'Metformin is completely safe in HF — no action needed',
+     'Metformin should be held during acute decompensated HF due to lactic acidosis risk from reduced tissue perfusion, and restarted when stable',
+     'Metformin dose should be doubled to improve glycaemic control during hospitalisation'
+   ], correct:2},
+
+  {id:'aq7', ptId:1,
+   text:'What is the HAS-BLED score concern in this patient before starting anticoagulation, and does it outweigh the stroke risk?',
+   cat:'Pharmacovigilance',
+   exp:'HAS-BLED assesses bleeding risk: H=Hypertension (+1), A=Abnormal renal/liver function (mild CKD, +1), S=Prior stroke (0), B=Bleeding history (0), L=Labile INR (not applicable if DOAC used, 0), E=Elderly >65 (+1), D=Drugs/alcohol (Aspirin use, +1). Total HAS-BLED = 4. However, a high HAS-BLED score is NOT a contraindication to anticoagulation — it is a prompt to identify and correct modifiable bleeding risk factors (control BP, stop Aspirin, review other drugs). The CHA₂DS₂-VASc of 5 far outweighs the bleeding risk. DOACs (especially Apixaban) have lower intracranial bleeding risk than Warfarin.',
+   opts:[
+     'HAS-BLED score 1 — bleeding risk is negligible, start anticoagulation immediately without any precautions',
+     'HAS-BLED score 4 — bleeding risk is high therefore anticoagulation should never be started in this patient',
+     'HAS-BLED score 4 — identifies modifiable risk factors to address, but does NOT outweigh the CHA₂DS₂-VASc score of 5; anticoagulation with a DOAC should still be started',
+     'HAS-BLED is not relevant in patients with heart failure'
+   ], correct:2},
+
+  {id:'aq8', ptId:1,
+   text:'This patient has HFrEF with EF 35% and AFib. For rate control of his AFib, which medication combination is most appropriate?',
+   cat:'Management',
+   exp:'In HFrEF with AFib, rate control is the primary strategy. Bisoprolol (beta-blocker) is already prescribed and appropriate. Digoxin can provide additional rate control in HF (already prescribed but currently supratherapeutic — needs dose reduction). Calcium channel blockers that are negative inotropes (Verapamil, Diltiazem) are CONTRAINDICATED in HFrEF. Amiodarone can be considered for rhythm control if rate control fails but carries significant toxicity.',
+   opts:[
+     'Stop Bisoprolol and start Verapamil for better rate control',
+     'Continue Bisoprolol + adjust Digoxin to therapeutic level — appropriate for HFrEF with AFib',
+     'Start Amiodarone immediately as first-line rate control',
+     'Add Diltiazem to Bisoprolol for dual rate control'
+   ], correct:1},
+  {id:'aq9', ptId:1,
+   text:'Amiodarone has been added to this patient who is already on Digoxin 0.125mg and Atorvastatin 40mg. What is the MOST DANGEROUS consequence of this combination and what immediate action is required?',
+   cat:'Drug Interactions',
+   exp:'Amiodarone is a potent inhibitor of P-glycoprotein (P-gp) and reduces renal tubular secretion of Digoxin, effectively DOUBLING Digoxin plasma levels. This patient already has a supratherapeutic Digoxin level of 1.8 ng/mL (target 0.5–0.9 ng/mL). Adding Amiodarone without reducing Digoxin will cause severe toxicity: profound bradycardia, complete AV heart block, ventricular fibrillation, and cardiac arrest. Immediate action: HALVE Digoxin dose to 0.0625mg, check ECG and Digoxin level within 5 days. Additionally, Amiodarone inhibits CYP3A4 → increases Atorvastatin levels → myopathy/rhabdomyolysis risk. Cap Atorvastatin at 20mg/day when co-prescribed with Amiodarone.',
+   opts:[
+     'Amiodarone and Digoxin have no interaction — both can be used safely together at current doses',
+     'Amiodarone reduces Digoxin absorption from the gut — take them 2 hours apart to avoid interaction',
+     'Amiodarone inhibits P-glycoprotein doubling Digoxin levels causing life-threatening toxicity — halve Digoxin dose immediately and monitor ECG',
+     'Amiodarone and Atorvastatin interact causing liver failure — stop Atorvastatin immediately'
+   ], correct:2},
+];
+
+
+const ASTHMA_PT = {
+  fname:'Sara', lname:'Al-Ghamdi', age:28, gender:'f', mrn:'MRN-AST-003',
+  occ:'School Teacher', edu:'University',
+  cc:'Recurrent episodes of wheeze, chest tightness, and breathlessness — worse at night and early morning',
+  dx:[
+    'Moderate Persistent Asthma (GINA Step 3, diagnosed age 14)',
+    'Allergic Rhinitis (seasonal, house dust mite sensitisation)',
+    'Gastro-oesophageal Reflux Disease (GORD) — can trigger asthma',
+    'Anxiety Disorder (mild)',
+  ],
+  hpi:'A 28-year-old school teacher presents with worsening asthma control over the past 6 weeks. She reports 4-5 daytime symptoms per week, nocturnal awakenings 2-3 times per week, and using her reliever inhaler (Salbutamol) daily — sometimes more than 3 times per day. Her peak flow has dropped to 68% of predicted. She admits she often forgets her preventer inhaler and frequently uses her reliever inhaler incorrectly (does not shake, inhales too fast, does not hold breath). She is also taking Ibuprofen regularly for headaches — unaware it can worsen asthma. Her sister recently gave her Propranolol tablets (leftover) for anxiety — she has taken 3 doses this week.',
+  pmh:'Eczema as a child (resolved). No prior hospitalisations for asthma. No intubation history. Seasonal hay fever since age 10.',
+  fhx:'Mother: asthma and allergic rhinitis. Father: hypertension. Sister: eczema.',
+  shx:'Non-smoker. No alcohol. Lives in an apartment with carpets and a cat. Works in a dusty classroom environment. Uses aerosol air fresheners at home. Stress from work is a known trigger. Poor sleep due to nocturnal symptoms.',
+  allerg:'Aspirin — wheeze and bronchospasm (NSAID-exacerbated respiratory disease)',
+  meds:[
+    {name:'Salbutamol MDI (SABA — Reliever)', dose:'100 mcg/puff', freq:'2 puffs PRN (as needed)', route:'Inhaled', flags:['ddi'],
+     flagNote:'Overuse ⚠: Patient is using Salbutamol >3 times/day — a sign of UNCONTROLLED asthma and over-reliance on reliever. Using >1 SABA inhaler/month is associated with increased exacerbation risk and mortality. This is a pharmacovigilance signal requiring urgent review of preventer therapy.'},
+    {name:'Budesonide/Formoterol MDI (ICS/LABA — Preventer)', dose:'200/6 mcg/puff', freq:'2 puffs TWICE daily', route:'Inhaled', flags:['ddi'],
+     flagNote:'Adherence issue ⚠: Patient is NOT taking this regularly. Poor ICS adherence is the leading cause of uncontrolled asthma. Formoterol (LABA) should NEVER be used without ICS — risk of fatal asthma. Also: the patient is using her inhaler incorrectly — no shaking, too-fast inhalation, no breath-hold. This dramatically reduces lung deposition to <10%.'},
+    {name:'Ibuprofen 400 mg', dose:'400 mg', freq:'As needed for headaches', route:'PO', flags:['ddi'],
+     flagNote:'MAJOR DDI ⚡: NSAIDs (Ibuprofen) are CONTRAINDICATED in NSAID-exacerbated respiratory disease. This patient already has Aspirin allergy causing wheeze — she has NSAID-exacerbated respiratory disease (AERD/Samter\'s triad). Ibuprofen can trigger life-threatening bronchospasm. Immediate action: STOP Ibuprofen. Use Paracetamol for analgesia instead.'},
+    {name:'Propranolol 40 mg', dose:'40 mg', freq:'Once daily (self-prescribed)', route:'PO', flags:['ddi'],
+     flagNote:'MAJOR DDI ⚡⚡: Non-selective beta-blockers (Propranolol) are ABSOLUTELY CONTRAINDICATED in asthma. Propranolol blocks beta-2 receptors in bronchial smooth muscle → severe bronchoconstriction → potentially fatal asthma attack. This patient is self-medicating with her sister\'s leftover Propranolol for anxiety — she must STOP immediately. If a beta-blocker is genuinely needed (e.g. for SVT), use a cardioselective one (Bisoprolol, Metoprolol) with extreme caution and close monitoring.'},
+    {name:'Montelukast (LTRA)', dose:'10 mg', freq:'Once daily at night', route:'PO', flags:[], flagNote:'Leukotriene receptor antagonist — appropriate add-on therapy for asthma + allergic rhinitis. Check for neuropsychiatric side effects (mood changes, nightmares) given patient has anxiety.'},
+    {name:'Fluticasone Nasal Spray', dose:'50 mcg/spray', freq:'2 sprays each nostril once daily', route:'Intranasal', flags:[], flagNote:'Appropriate for allergic rhinitis. Treating rhinitis improves asthma control (united airway concept).'},
+    {name:'Omeprazole', dose:'20 mg', freq:'Once daily before breakfast', route:'PO', flags:[], flagNote:'For GORD — treating reflux can improve asthma control as acid reflux is a known asthma trigger.'},
+  ],
+  vitals:{bp:'112/72', hr:88, temp:36.7, spo2:95, wt:62, egfr:98, k:4.1, na:138, inr:null, hba1c:null, cr:'72 µmol/L'},
+  labs:[
+    {name:'Peak Expiratory Flow (PEF)', val:'68% predicted', ref:'≥80% predicted', status:'hi', note:'Reduced — moderate uncontrolled asthma'},
+    {name:'FEV1', val:'72% predicted', ref:'≥80% predicted', status:'hi', note:'Obstructive pattern on spirometry'},
+    {name:'FEV1/FVC Ratio', val:'0.68', ref:'≥0.70', status:'hi', note:'Confirms airflow obstruction'},
+    {name:'FeNO (Exhaled Nitric Oxide)', val:'42 ppb', ref:'<25 ppb', status:'hi', note:'Elevated — eosinophilic airway inflammation, ICS-responsive'},
+    {name:'Total IgE', val:'280 IU/mL', ref:'<100 IU/mL', status:'hi', note:'Elevated — atopic/allergic phenotype'},
+    {name:'Eosinophils', val:'0.6 ×10⁹/L', ref:'0.0–0.4 ×10⁹/L', status:'hi', note:'Eosinophilia — supports allergic/eosinophilic asthma'},
+    {name:'SpO2', val:'95%', ref:'≥97%', status:'hi', note:'Mildly reduced — monitor closely'},
+    {name:'Blood Glucose', val:'4.8 mmol/L', ref:'3.9–5.6 mmol/L', status:'ok', note:'Normal'},
+    {name:'Full Blood Count (Hb)', val:'12.8 g/dL', ref:'12.0–16.0 g/dL', status:'ok', note:'Normal'},
+    {name:'Skin Prick Test', val:'Positive: house dust mite, cat dander, grass pollen', ref:'Negative', status:'hi', note:'Multiple allergen sensitisation confirmed'},
+  ]
+};
+
+const ASTHMA_QS = [
+
+  // ── Q1: Propranolol DDI ──
+  {id:'as1', ptId:2,
+   text:'Sara is self-medicating with her sister\'s Propranolol 40mg for anxiety. Which THREE statements about this are CORRECT? Select the best single answer that captures all correct points.',
+   cat:'Drug Interactions',
+   exp:'Propranolol is a non-selective beta-blocker. It blocks beta-2 receptors in the bronchi causing severe bronchoconstriction. It also renders Salbutamol ineffective because Salbutamol works by stimulating the same beta-2 receptors that Propranolol has blocked. This is an absolute contraindication. The correct action is immediate cessation, patient education, and referral to CBT for anxiety. If a beta-blocker is genuinely needed, only a cardioselective agent (Bisoprolol) may be considered under specialist supervision.',
+   opts:[
+     'Propranolol is safe at low doses in mild asthma and blocks only beta-1 receptors in the heart',
+     'Propranolol blocks beta-2 receptors causing bronchoconstriction, renders Salbutamol ineffective, and must be stopped immediately — CBT is the safe alternative for anxiety',
+     'Propranolol can be continued if the patient takes her Salbutamol inhaler 30 minutes before each dose',
+     'Propranolol only causes problems in severe asthma — it is acceptable in moderate persistent asthma'
+   ], correct:1},
+
+  // ── Q2: NSAID contraindication ──
+  {id:'as2', ptId:2,
+   text:'Sara takes Ibuprofen regularly for headaches and has a documented Aspirin allergy causing wheeze. Which counselling statement should you give her?',
+   cat:'Pharmacovigilance',
+   exp:'Sara has NSAID-Exacerbated Respiratory Disease (AERD). All NSAIDs — including Ibuprofen, Diclofenac, and Naproxen — share cross-reactivity with Aspirin and can trigger severe bronchospasm. This is a class effect, not a drug-specific allergy. Paracetamol is the only safe OTC analgesic alternative. This contraindication must be prominently documented and the patient must be counselled to inform all future prescribers.',
+   opts:[
+     '"Ibuprofen is a different drug from Aspirin so it is safe for you to use"',
+     '"You can use Ibuprofen at half the dose since your Aspirin reaction was mild"',
+     '"Because of your Aspirin allergy, ALL NSAIDs including Ibuprofen can cause a dangerous asthma attack — use Paracetamol instead for all pain relief"',
+     '"Take your Salbutamol inhaler first and then Ibuprofen should be safe to use"'
+   ], correct:2},
+
+  // ── Q3: SABA overuse counselling ──
+  {id:'as3', ptId:2,
+   text:'Sara uses her Salbutamol (blue) inhaler more than 3 times a day. When counselling her about this, which set of points is MOST appropriate to cover?',
+   cat:'Patient Education',
+   exp:'SABA overuse (>2 puffs/day) is a red-flag pharmacovigilance signal in asthma indicating uncontrolled disease. Key counselling: (1) The blue inhaler is a RELIEVER — it opens airways quickly but does NOT treat underlying inflammation; (2) Needing it daily means asthma is NOT controlled; (3) The brown/purple inhaler (preventer/ICS) treats the inflammation and must be taken every day; (4) Overuse of SABA increases the risk of near-fatal asthma attacks; (5) She must use the preventer inhaler regularly to reduce reliance on the reliever.',
+   opts:[
+     'Tell her Salbutamol is safe to use as often as needed since it is a reliever and has no serious side effects',
+     'Tell her to use the blue inhaler 4 times daily on a schedule instead of as needed to better control her symptoms',
+     'Explain that using the blue reliever daily means her asthma is not controlled — she must take her brown preventer inhaler every day as prescribed to reduce inflammation and reduce reliance on the blue inhaler',
+     'Advise her to switch to a stronger SABA with a longer duration of action as her current one is not working'
+   ], correct:2},
+
+  // ── Q4: Inhaler technique — pick the CORRECT step ──
+  {id:'as4', ptId:2,
+   text:'You are counselling Sara on correct pMDI inhaler technique. She admits she inhales quickly and does not hold her breath. From the steps below, select the CORRECT complete sequence:',
+   cat:'Patient Education',
+   exp:'Correct pMDI technique: (1) Shake vigorously 5 seconds — drug particles settle; (2) Breathe out gently — creates space; (3) Seal lips around mouthpiece; (4) Start inhaling SLOWLY and press canister once simultaneously — fast inhalation causes drug impaction in the throat; (5) Continue inhaling fully; (6) HOLD BREATH 10 seconds — allows deposition; (7) Breathe out slowly through nose; (8) Wait 60 seconds before 2nd puff; (9) Rinse mouth after ICS — prevents oral candidiasis. A spacer device should always be used — it increases lung deposition from <20% to 40-60%.',
+   opts:[
+     'Do not shake — press the inhaler before putting it in your mouth — breathe in fast and hard — breathe out immediately',
+     'Shake for 5 seconds — breathe out — place in mouth — inhale SLOWLY while pressing once — hold breath for 10 seconds — rinse mouth after ICS — use a spacer',
+     'Shake for 2 seconds — press the inhaler twice at the same time — hold breath for 3 seconds — repeat immediately',
+     'No preparation needed — simply press and breathe normally — the drug will reach the lungs regardless of technique'
+   ], correct:1},
+
+  // ── Q5: ICS/LABA counselling — identify the WRONG statement ──
+  {id:'as5', ptId:2,
+   text:'Sara says she only uses her Budesonide/Formoterol inhaler when she feels symptoms. Which of the following best describes the CORRECT counselling message?',
+   cat:'Patient Education',
+   exp:'The most critical ICS counselling point: the inhaled corticosteroid (ICS) must be taken EVERY DAY even when feeling well. Asthma inflammation is always present even between symptoms — stopping the preventer when well allows inflammation to build up silently until the next exacerbation. The LABA (Formoterol) must never be used without ICS as standalone therapy — monotherapy LABA use is associated with fatal asthma. Mouth rinsing after each use prevents oral candidiasis (thrush), a common and preventable side effect.',
+   opts:[
+     '"Use the preventer inhaler only when you feel tight — it works best when symptoms are present"',
+     '"The preventer inhaler must be taken every single day even when you feel completely well — it treats the underlying inflammation that is always there even without symptoms; rinse your mouth after each use to prevent oral thrush"',
+     '"You can stop the preventer inhaler during summer when your asthma is usually better and restart it in winter"',
+     '"The preventer inhaler causes steroid side effects if used daily — it is safer to use it only 3 times per week"'
+   ], correct:1},
+
+  // ── Q6: Environmental triggers — multi-point counselling ──
+  {id:'as6', ptId:2,
+   text:'Sara lives with a cat, has carpets, and uses aerosol air fresheners. Her skin prick tests are positive for cat dander and house dust mite. Which counselling package is MOST complete and accurate?',
+   cat:'Patient Education',
+   exp:'Environmental trigger avoidance can reduce asthma exacerbations by 30-50%. Evidence-based counselling: (1) Cat — ideally rehome (most effective); if not, keep cat out of bedroom, use HEPA air purifier, wash hands after contact; (2) House dust mite — allergen-proof mattress and pillow covers, wash bedding at 60°C weekly, replace carpets with hard flooring; (3) Aerosol sprays — chemical fumes are airway irritants; switch to pump or electric alternatives; (4) Classroom — request dust-free chalk, good ventilation; (5) GORD — raise head of bed, avoid eating 3 hours before sleep as acid reflux triggers nocturnal asthma; (6) Stress — refer to occupational health and CBT.',
+   opts:[
+     'Advise her to buy a stronger air freshener to mask dust and cat odours, and to vacuum carpets more frequently',
+     'Environmental changes are not evidence-based — focus only on increasing her medication dose and follow up in 3 months',
+     'Advise keeping the cat out of the bedroom and ideally rehoming it, using allergen-proof mattress covers, washing bedding at 60°C weekly, switching aerosols to pump sprays, ensuring good classroom ventilation, and treating GORD to reduce nocturnal asthma',
+     'Advise her to wear a face mask at home at all times — this is the most effective method of allergen avoidance'
+   ], correct:2},
+
+  // ── Q7: NEW — Multi-select style: Identify ALL incorrect counselling statements ──
+  {id:'as7', ptId:2,
+   text:'A junior colleague is about to counsel Sara about her asthma medications. Which ONE of the following statements by the colleague is INCORRECT and potentially dangerous?',
+   cat:'Patient Education',
+   exp:'Telling a patient they can share inhalers is dangerous and incorrect — inhalers are prescribed for a specific patient, specific condition, and specific inhaler device. Sara\'s sister (who provided Propranolol) does not have asthma, and sharing inhalers between patients with different conditions and devices is never appropriate. The other options represent correct counselling: mouth rinsing after ICS prevents thrush; SABA use >1 inhaler/month signals poor control; spacers significantly improve drug delivery.',
+   opts:[
+     '"Always rinse your mouth with water and spit after using your brown preventer inhaler to prevent oral thrush"',
+     '"If you are using more than one blue reliever inhaler per month, this is a warning sign that your asthma is not well controlled"',
+     '"You can share your inhaler with a family member who has similar breathing symptoms — the dose is the same"',
+     '"Using a spacer device with your inhaler helps more of the medicine reach your lungs"'
+   ], correct:2},
+
+  // ── Q8: NEW — Action plan counselling ──
+  {id:'as8', ptId:2,
+   text:'Sara asks: "How will I know if my asthma is getting worse and when should I go to hospital?" Which is the BEST response?',
+   cat:'Patient Education',
+   exp:'Every asthma patient should have a written Asthma Action Plan based on symptoms or peak flow. Key danger signs requiring emergency care: (1) Salbutamol not working or lasting less than 4 hours; (2) Peak flow below 50% predicted; (3) Unable to speak in full sentences; (4) SpO2 below 92%; (5) Lips or fingernails turning blue (cyanosis). Patients should step up treatment at home if peak flow drops to 50-75% (double ICS dose and take Salbutamol every 4 hours). If below 50% or no improvement in 15-20 minutes — call emergency services. Oral prednisolone should be available at home for agreed rescue use.',
+   opts:[
+     '"Go to hospital only if you completely stop breathing — short of breath is normal with asthma"',
+     '"Take extra Salbutamol puffs every hour until you feel better — if still unwell after 24 hours then consider hospital"',
+     '"Use your written Asthma Action Plan — go to hospital immediately if Salbutamol is not helping within 15-20 minutes, your peak flow is below 50%, you cannot speak in full sentences, or your lips look blue"',
+     '"Your asthma is well controlled so you do not need an action plan — only severe asthmatics need one"'
+   ], correct:2},
+];
+
+
+
 // ═══════════════════════════════════════════
 // AUTH
 // ═══════════════════════════════════════════
@@ -828,18 +1181,35 @@ function doLogin() {
         try {
           var parsedP = JSON.parse(lsP);
           var parsedQ = JSON.parse(lsQ);
-          // Only use localStorage if it has real patient data
-          if (parsedP && parsedP.length > 0 && parsedP[0].fname) {
+          // Only use localStorage if it has BOTH patients (v2 data)
+          if (parsedP && parsedP.length >= 3 && parsedP[0].fname && parsedP[1].fname) {
             S.patients = parsedP;
             S.questions = parsedQ;
             loaded = true;
+          } else {
+            // Old data with only 1 patient - clear and reload fresh
+            localStorage.removeItem('iau_patients');
+            localStorage.removeItem('iau_questions');
           }
         } catch(e) { loaded = false; }
       }
     }
     if (!loaded) {
-      S.patients.push(Object.assign({id:0}, JSON.parse(JSON.stringify(GER))));
-      S.questions = SAMPLE_QS.map(q => Object.assign({}, q));
+      // Load both patients
+      var gerPt = JSON.parse(JSON.stringify(GER));
+      gerPt.id = 0;
+      var ahmadPt = JSON.parse(JSON.stringify(AHMAD));
+      ahmadPt.id = 1;
+      var asthmaPt = JSON.parse(JSON.stringify(ASTHMA_PT));
+      asthmaPt.id = 2;
+      S.patients.push(gerPt);
+      S.patients.push(ahmadPt);
+      S.patients.push(asthmaPt);
+      // Load all questions with correct ptId
+      var allQs = SAMPLE_QS.map(function(q){ return Object.assign({},q,{ptId:0}); });
+      var ahmadQsCopy = AHMAD_QS.map(function(q){ return Object.assign({},q,{ptId:1}); });
+      var asthmaQsCopy = ASTHMA_QS.map(function(q){ return Object.assign({},q,{ptId:2}); });
+      S.questions = allQs.concat(ahmadQsCopy).concat(asthmaQsCopy);
     }
     // Always save current data to localStorage for persistence
     try {
@@ -857,6 +1227,9 @@ function applyRole() {
   document.getElementById('hdrBadge').textContent = isInst ? 'Dr. Muflih — Instructor' : 'Student';
   document.getElementById('instNav').classList.toggle('hidden', !isInst);
   document.getElementById('studNav').classList.toggle('hidden', isInst);
+  // Hide access page from students entirely
+  var accessPage = document.getElementById('page-access');
+  if (accessPage && !isInst) accessPage.style.display = 'none';
   document.querySelectorAll('.sb-item').forEach(i => i.classList.remove('active'));
   buildMobNav();
   if (isInst) { gp('patients'); setMobNav('patients'); renderPtGrid(); }
@@ -869,7 +1242,7 @@ function doLogout() {
   document.getElementById('lu').value = '';
   document.getElementById('lp').value = '';
   document.getElementById('errBox').style.display = 'none';
-  S.submitted = false; S.quizAns = {};
+  S.submitted = false; S.quizAns = {}; S.selectedPtId = null;
   S.role = '';
 }
 
@@ -877,6 +1250,9 @@ function doLogout() {
 // NAVIGATION
 // ═══════════════════════════════════════════
 function gp(name, btn) {
+  // Block students from accessing instructor-only pages
+  var instOnly = ['patients','addPt','questions','addQ','results','access','export','reflectInst'];
+  if (S.role === 'student' && instOnly.indexOf(name) !== -1) return;
   document.querySelectorAll('.page').forEach(p => { p.className = 'page hidden'; });
   const pg = document.getElementById('page-' + name);
   if (pg) pg.className = 'page active';
@@ -1022,6 +1398,10 @@ function buildDetail(i, isInst) {
     <button class="sec-btn" onclick="secSw('lab',this)">
       ${sv('<path d="M6 3v10l-2 4a2 2 0 0 0 1.8 2.9h12.4A2 2 0 0 0 20 17l-2-4V3"/><line x1="6" y1="8" x2="18" y2="8"/>','var(--amber)')} Lab Results
     </button>
+    ${p.mrn === 'MRN-AST-003' ? `<button class="sec-btn" onclick="secSw('counsel',this)" style="border-color:var(--purple);color:var(--purple)">
+      ${sv('<path d="M17 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>','var(--purple)')}
+      Pharmacist Counselling
+    </button>` : ''}
     ${isInst ? `<button class="sec-btn warn-btn" onclick="secSw('alerts',this)">
       ${sv('<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>','var(--red)')} Safety Alerts
     </button>` : ''}
@@ -1124,6 +1504,40 @@ function buildDetail(i, isInst) {
       </div>
       <div style="font-size:11px;color:var(--red);margin-top:10px">Red values are outside normal reference range</div>
     </div>
+
+    ${p.mrn === 'MRN-HF-002' ? `
+    <div class="card" style="border:2px solid #dc2626;margin-bottom:14px">
+      <div class="card-hdr" style="color:#dc2626">
+        ${sv('<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>','#dc2626',16)}
+        CHA&#x2082;DS&#x2082;-VASc Stroke Risk Calculator — AFib Patient
+      </div>
+      <div style="font-size:12px;color:var(--text2);margin-bottom:14px;line-height:1.65">
+        This patient has <strong>persistent non-valvular Atrial Fibrillation</strong>. Tick each risk factor present to calculate his stroke risk score and determine if anticoagulation is required.
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;margin-bottom:14px">
+        ${[
+          {id:'chads-chf',   label:'C — Congestive Heart Failure',         pts:'+1', hint:'EF 35% — YES'},
+          {id:'chads-htn',   label:'H — Hypertension',                     pts:'+1', hint:'On treatment — YES'},
+          {id:'chads-age75', label:'A₂ — Age ≥75 years',                   pts:'+2', hint:'Age 67 — NO'},
+          {id:'chads-dm',    label:'D — Diabetes Mellitus',                 pts:'+1', hint:'10 years — YES'},
+          {id:'chads-stroke',label:'S₂ — Prior Stroke or TIA',             pts:'+2', hint:'No history — NO'},
+          {id:'chads-vasc',  label:'V — Vascular Disease (MI/PAD)',         pts:'+1', hint:'Prior MI 2019 — YES'},
+          {id:'chads-age65', label:'A — Age 65–74 years',                   pts:'+1', hint:'Age 67 — YES'},
+          {id:'chads-female',label:'Sc — Female Sex',                       pts:'+1', hint:'Male — NO'},
+        ].map(function(r){
+          return '<label style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;border:1.5px solid var(--border);cursor:pointer;font-size:12px;font-weight:600;background:var(--surface)">'
+            + '<input type="checkbox" id="' + r.id + '" onchange="calcCHADS()" style="width:16px;height:16px;accent-color:#dc2626"/>'
+            + '<div style="flex:1"><div style="color:var(--navy)">' + r.label + '</div>'
+            + '<div style="font-size:10px;color:var(--text3);margin-top:1px">' + r.hint + '</div></div>'
+            + '<span style="font-weight:800;color:#dc2626;font-size:13px">' + r.pts + '</span></label>';
+        }).join('')}
+      </div>
+      <button onclick="calcCHADS()" style="background:#dc2626;color:#fff;border:none;border-radius:8px;padding:10px 24px;font-size:13px;font-weight:700;cursor:pointer;margin-bottom:12px;font-family:inherit">
+        Calculate Score
+      </button>
+      <div id="chads-result" style="display:none"></div>
+      ${isInst ? '<div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;padding:10px 13px;font-size:11px;color:#991b1b;margin-top:10px;line-height:1.6"><strong>Instructor answer:</strong> Correct score = 5 (HF+1, HTN+1, Age 65-74+1, DM+1, Vascular+1). Annual stroke risk ~6.7%. Anticoagulation with Apixaban 5mg BD is MANDATORY. Aspirin alone is insufficient and must be stopped once anticoagulant is started.</div>' : ''}
+    </div>` : ''}
     ${isInst ? `<div class="card" style="border:2px solid var(--accent)">
       <div class="card-hdr" style="color:var(--teal)">Instructor — Cockcroft-Gault eGFR Verification</div>
       <div style="font-size:12px;color:var(--text2);margin-bottom:12px;line-height:1.7">
@@ -1195,7 +1609,38 @@ function buildDetail(i, isInst) {
 
   // SAFETY ALERTS (instructor only)
   if (isInst) {
-    const alerts = [
+    // Choose alerts based on patient
+    var isAhmad = (p.mrn === 'MRN-HF-002');
+    var isSara  = (p.mrn === 'MRN-AST-003');
+    const ahmadAlerts = [
+      {cls:'alert-red',sev:'High',title:'MAJOR OMISSION: No Anticoagulation in AFib (CHA\u2082DS\u2082-VASc = 5)',
+       body:'This patient has persistent non-valvular AFib diagnosed 1 year ago and has NEVER been started on anticoagulation. His CHA\u2082DS\u2082-VASc score is 5 (HF+1, HTN+1, Age 67+1, DM+1, Vascular disease/MI+1) giving an annual stroke risk of ~6.7%. Aspirin alone is NOT recommended for AFib stroke prevention per ESC/ACC guidelines. <strong>Action: Start Apixaban 5mg twice daily</strong> (preferred DOAC in HFrEF + CKD). Stop Aspirin. Calculate HAS-BLED score and address modifiable bleeding risks.'},
+      {cls:'alert-red',sev:'High',title:'Digoxin Toxicity Risk: Supratherapeutic Level (1.8 ng/mL)',
+       body:'Digoxin level is 1.8 ng/mL against a therapeutic target of 0.5-0.9 ng/mL in HF. TWO interactions are responsible: (1) Spironolactone reduces renal tubular secretion of Digoxin → elevated plasma levels; (2) Furosemide causes hypokalaemia → sensitises myocardium to Digoxin toxicity even at therapeutic levels. Current K+ = 5.5 mmol/L masks the risk but if diuresis is intensified, K+ may drop rapidly. Symptoms of toxicity: nausea, vomiting, bradycardia, xanthopsia (yellow vision), life-threatening arrhythmias. <strong>Action: Reduce Digoxin to 0.0625mg. Recheck level and electrolytes in 5 days.</strong>'},
+      {cls:'alert-red',sev:'High',title:'Hyperkalaemia Risk: Ramipril + Spironolactone (K+ = 5.5 mmol/L)',
+       body:'Both Ramipril (ACE inhibitor) and Spironolactone (MRA) independently reduce aldosterone-mediated potassium excretion. Combined, they cause additive hyperkalaemia. K+ is currently 5.5 mmol/L — this is above the safe threshold for the combination. At K+ >5.5, consider dose reduction of Spironolactone. At K+ >6.0, withhold and consider Patiromer. <strong>Action: Dietary potassium restriction, reduce Spironolactone to 12.5mg, recheck K+ in 48-72h. Consider potassium binder if persistent.</strong>'},
+      {cls:'alert-amber',sev:'High',title:'Missing Therapy: SGLT-2 Inhibitor Not Prescribed (HFrEF 4th Pillar)',
+       body:'ESC 2021 and ACC/AHA 2022 HF guidelines mandate four evidence-based therapies for HFrEF (EF<40%): (1) ACE inhibitor/ARNI \u2713, (2) Beta-blocker \u2713, (3) MRA \u2713, (4) SGLT-2 inhibitor \u2717 MISSING. Dapagliflozin 10mg or Empagliflozin 10mg reduces HF hospitalisations by 25% and cardiovascular mortality by 11% regardless of diabetes status. This patient also benefits from HbA1c improvement (currently 8.4%). eGFR 68 is well above the threshold for use. <strong>Action: Add Dapagliflozin 10mg once daily.</strong>'},
+      {cls:'alert-amber',sev:'Moderate',title:'Metformin — Hold During Acute Decompensation',
+       body:'Metformin is associated with lactic acidosis when tissue perfusion is compromised — a real risk in acute decompensated HF with low cardiac output. Current eGFR 68 is acceptable for outpatient use, but during hospitalisation for acute HF, Metformin should be withheld and restarted only when clinically stable. Also: if any contrast investigations are planned (cardiac catheterisation, CT), Metformin must be withheld 48 hours before and after. <strong>Action: HOLD Metformin during admission. Restart when euvolaemic and eGFR stable. Add Dapagliflozin as superior alternative addressing both HF and DM.</strong>'},
+      {cls:'alert-blue',sev:'Moderate',title:'Aspirin Prescribing Omission — Wrong Therapy for AFib',
+       body:'Aspirin 75mg is prescribed, presumably for cardiovascular secondary prevention post-MI. However, in a patient with AFib requiring anticoagulation, Aspirin adds bleeding risk without meaningful additional stroke prevention benefit. The combination of Aspirin + DOAC (once started) increases major bleeding risk by 50%. <strong>Action: Once Apixaban is started, review and stop Aspirin unless there is a compelling indication (e.g. recent ACS within 12 months). Current indication post-MI from 2019 does not justify Aspirin + anticoagulant dual therapy.</strong>'},
+      {cls:'alert-red',sev:'High',title:'MAJOR DDI: Amiodarone + Digoxin — Life-Threatening Interaction',
+       body:'<strong>This is one of the most dangerous drug interactions in cardiology.</strong> Amiodarone inhibits P-glycoprotein (P-gp) and renal tubular secretion of Digoxin, effectively doubling its plasma concentration. This patient already has a supratherapeutic Digoxin level of 1.8 ng/mL (target 0.5–0.9). Adding Amiodarone without reducing Digoxin will cause severe Digoxin toxicity: profound bradycardia, complete heart block, ventricular tachycardia, and cardiac arrest. <strong>Action: HALVE Digoxin dose immediately (0.125mg → 0.0625mg). Recheck Digoxin level and ECG within 5 days of starting Amiodarone. Monitor for bradycardia continuously.</strong> Additionally: Amiodarone + Atorvastatin inhibits CYP3A4 → elevated statin levels → myopathy/rhabdomyolysis risk. Cap Atorvastatin at 20mg/day.'},
+    ];
+    const saraAlerts = [
+      {cls:'alert-red',sev:'High',title:'MAJOR DDI: Propranolol (Non-selective Beta-blocker) in Asthma — ABSOLUTELY CONTRAINDICATED',
+       body:'Propranolol is a non-selective beta-blocker that blocks beta-2 receptors in bronchial smooth muscle, causing severe bronchoconstriction. This patient is self-medicating with her sister\'s leftover Propranolol for anxiety — she has taken 3 doses this week. Beta-blockers in asthma can cause a fatal asthma attack and render Salbutamol (beta-2 agonist) completely ineffective. <strong>Action: STOP Propranolol IMMEDIATELY. Educate patient on danger. For anxiety: refer to CBT. If beta-blocker is truly needed for another indication, use cardioselective Bisoprolol under specialist supervision only.</strong>'},
+      {cls:'alert-red',sev:'High',title:'MAJOR DDI: Ibuprofen (NSAID) in NSAID-Exacerbated Respiratory Disease (AERD)',
+       body:'This patient has documented Aspirin allergy causing wheeze — this is NSAID-Exacerbated Respiratory Disease (AERD / Samter\'s Triad). ALL NSAIDs share cross-reactivity: Ibuprofen, Diclofenac, Naproxen, Ketorolac are ALL contraindicated. Ibuprofen can trigger severe life-threatening bronchospasm identical to an acute asthma attack within minutes of ingestion. <strong>Action: STOP Ibuprofen IMMEDIATELY. Document NSAID contraindication prominently in patient records. Safe alternative: Paracetamol 500-1000mg for analgesia.</strong>'},
+      {cls:'alert-amber',sev:'High',title:'SABA Overuse — Uncontrolled Asthma Pharmacovigilance Signal',
+       body:'The patient is using Salbutamol >3 times/day and daily. GINA 2023 guidelines identify SABA overuse (>2 puffs/day or >1 inhaler/month) as a major risk factor for near-fatal asthma. This signals INADEQUATE preventer therapy, poor adherence, ongoing triggers, or incorrect inhaler technique — all present here. <strong>Action: (1) Step up to GINA Step 4 — consider high-dose ICS/LABA or MART therapy; (2) Address triggers: STOP NSAIDs and beta-blocker, advise cat rehoming; (3) Correct inhaler technique urgently; (4) Consider MART (Maintenance and Reliever Therapy) with ICS/Formoterol.</strong>'},
+      {cls:'alert-amber',sev:'Moderate',title:'Inhaler Technique Failure — Critically Reducing Drug Delivery',
+       body:'The patient admits to: not shaking the MDI, inhaling too fast, and not holding her breath. These errors reduce lung drug deposition to <10% of the labelled dose — equivalent to taking only 1/10th of her prescribed dose. This alone can explain her uncontrolled asthma despite apparently being on appropriate therapy. <strong>Counselling steps (demonstrate + observe): (1) Shake 5 seconds; (2) Exhale gently; (3) Seal lips around mouthpiece; (4) Inhale SLOWLY and press simultaneously; (5) Hold breath 10 seconds; (6) Wait 30-60s between puffs; (7) Rinse mouth after ICS. Always prescribe a spacer device.</strong>'},
+      {cls:'alert-blue',sev:'Moderate',title:'Environmental Triggers Not Addressed — Cat, Carpets, Aerosols',
+       body:'Skin prick test confirms sensitisation to cat dander AND house dust mite — both present in her home. She also uses aerosol air fresheners (potent airway irritant). Allergen avoidance can reduce exacerbation frequency by 30-50%. <strong>Counselling: (1) Rehome cat (most effective) or at minimum keep out of bedroom; (2) Allergen-impermeable mattress/pillow covers; (3) Wash bedding weekly at 60°C; (4) Replace carpets with hard flooring where possible; (5) Switch aerosols to pump/electric alternatives; (6) Good classroom ventilation; (7) Treat GORD — raise head of bed, avoid eating 3h before sleep.</strong>'},
+    ];
+    const alerts = isSara ? saraAlerts : isAhmad ? ahmadAlerts : [
       {cls:'alert-red',sev:'High',title:'DDI: Warfarin + Clarithromycin (CYP2C9 Inhibition)',
        body:'Clarithromycin inhibits CYP2C9 and CYP3A4. S-warfarin (the active enantiomer) is primarily metabolised by CYP2C9. Co-administration reduces warfarin clearance, raising plasma concentration and driving INR to 3.4. Risk: life-threatening haemorrhage (intracranial, GI, retroperitoneal). <strong>Action:</strong> Withhold Clarithromycin immediately. Check INR daily. If actively bleeding: IV Vitamin K ± Fresh Frozen Plasma. Consider alternative antibiotic not affecting CYP2C9.'},
       {cls:'alert-amber',sev:'Moderate',title:'DDI: Clarithromycin + Glibenclamide (↑ Hypoglycaemia Risk)',
@@ -1209,7 +1654,9 @@ function buildDetail(i, isInst) {
       {cls:'alert-blue',sev:'Moderate',title:'Renal Dosing: Metformin Overdose in CKD Stage 3b',
        body:'Calculated eGFR ~38 (Cockcroft-Gault: [(140-78)x56x0.85]/[72x1.075] = 38 mL/min/1.73m²). Current regimen: 2000 mg/day (1000 mg BD). Guidelines (NICE, ADA): eGFR 30–45 → reduce to maximum 1000 mg/day; eGFR <30 → discontinue. At current dose, metformin accumulates and inhibits mitochondrial complex I → impaired oxidative phosphorylation → excess lactate production → <strong>lactic acidosis</strong> (mortality 30–50%). <strong>Action:</strong> Reduce dose to 500 mg once daily or discontinue. Consider SGLT-2 inhibitor (if eGFR permits) or DPP-4 inhibitor as replacement.'},
     ];
-    html += `<div class="sec-pane hidden" id="sp-alerts">
+
+
+            html += `<div class="sec-pane hidden" id="sp-alerts">
       <div class="alert-box alert-red" style="margin-bottom:16px">
         ${sv('<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>','#c0392b')}
         <div><strong>Instructor-only panel.</strong> These detailed pharmacovigilance explanations and clinical actions are completely hidden from students. Students must identify the problems independently through the assessment questions.</div>
@@ -1226,7 +1673,82 @@ function buildDetail(i, isInst) {
     </div>`;
   }
 
-  dc.innerHTML = html;
+
+
+      dc.innerHTML = html;
+  // Build counselling pane for Sara separately (avoids template literal nesting issues)
+  if (p.mrn === 'MRN-AST-003') {
+    buildCounselPane(isInst);
+  }
+}
+
+
+// ═══════════════════════════════════════════
+// BUILD PHARMACIST COUNSELLING PANE (Sara)
+// Called after dc.innerHTML is set
+// ═══════════════════════════════════════════
+function buildCounselPane(isInst) {
+  var existing = document.getElementById('sp-counsel');
+  if (existing) return; // already built
+
+  var cItems = [
+    {n:1,  ok:true,  t:'Shake the MDI inhaler vigorously for 5 seconds before each use — drug particles settle at the bottom and must be resuspended'},
+    {n:2,  ok:true,  t:'Inhale SLOWLY and DEEPLY while pressing the canister once — fast inhalation causes drug to impact the throat instead of the lungs'},
+    {n:3,  ok:false, t:'Press the inhaler canister once BEFORE placing it in your mouth so the drug is pre-loaded and ready'},
+    {n:4,  ok:true,  t:'HOLD your breath for 10 seconds after inhaling — this allows drug particles to settle and deposit on airway walls'},
+    {n:5,  ok:false, t:'Inhale as quickly and forcefully as possible — the stronger the airflow the deeper the drug reaches into the lungs'},
+    {n:6,  ok:true,  t:'RINSE your mouth with water and SPIT it out after every use of your preventer inhaler — this prevents oral thrush (candidiasis)'},
+    {n:7,  ok:false, t:'After rinsing your mouth, swallow the water — this helps your body absorb any remaining drug from the inhaler'},
+    {n:8,  ok:true,  t:'Always use a SPACER device with your pMDI inhaler — it increases drug delivery to the lungs from under 20% to over 40%'},
+    {n:9,  ok:true,  t:'Take your PREVENTER inhaler EVERY DAY even when you feel completely well — it controls the inflammation that is always present'},
+    {n:10, ok:false, t:'Stop your preventer inhaler during summer when your asthma usually improves and restart it when symptoms come back in winter'},
+    {n:11, ok:true,  t:'STOP Ibuprofen and ALL NSAIDs immediately — you have NSAID-Exacerbated Respiratory Disease; use Paracetamol for all pain relief'},
+    {n:12, ok:true,  t:'STOP Propranolol immediately — it blocks the same receptors as your Salbutamol reliever inhaler, making it ineffective'},
+    {n:13, ok:false, t:'You can continue Propranolol at half the dose (20mg) provided you always carry your Salbutamol reliever with you'},
+    {n:14, ok:true,  t:'Try to rehome your cat or keep it out of your bedroom — cat dander is a confirmed allergen trigger for your asthma'},
+    {n:15, ok:true,  t:'Use allergen-proof mattress and pillow covers and wash bedding weekly at 60 degrees — house dust mite is a confirmed trigger'},
+    {n:16, ok:false, t:'Aerosol air fresheners help neutralise household allergens and odours — continue using them to improve your indoor air quality'},
+  ];
+
+  var pane = document.createElement('div');
+  pane.className = 'sec-pane hidden';
+  pane.id = 'sp-counsel';
+
+  var html = '';
+  html += '<div class="alert-box alert-blue" style="margin-bottom:16px">';
+  html += '<svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:none;stroke:#1e40af;stroke-width:2;stroke-linecap:round;flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>';
+  html += '<div>You are the pharmacist counselling Sara. For each statement below, click <strong style="color:#6c3fd8">Yes</strong> if it is correct and relevant for Sara, or <strong style="color:#64748b">No</strong> if it is incorrect or does not apply. Then click <strong>Check My Answers</strong>.</div></div>';
+  html += '<div id="counsel-result" style="display:none;margin-bottom:16px"></div>';
+  html += '<div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">';
+
+  cItems.forEach(function(item) {
+    html += '<div id="crow-' + item.n + '" style="display:flex;align-items:flex-start;gap:12px;padding:13px 16px;border-radius:10px;border:2px solid #dde3ec;background:#fff">';
+    html += '<div style="min-width:26px;height:26px;background:#f0ebff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#6c3fd8;flex-shrink:0;margin-top:1px">' + item.n + '</div>';
+    html += '<div style="flex:1;font-size:13px;font-weight:500;color:#0a2540;line-height:1.65">' + item.t + '</div>';
+    html += '<div style="display:flex;gap:6px;flex-shrink:0;margin-top:2px">';
+    html += '<button id="cy-' + item.n + '" onclick="pickCounsel(' + item.n + ',true)" style="background:#f0ebff;border:2px solid #ddd6fe;color:#6c3fd8;border-radius:7px;padding:6px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap">Yes</button>';
+    html += '<button id="cn-' + item.n + '" onclick="pickCounsel(' + item.n + ',false)" style="background:#f1f5f9;border:2px solid #e2e8f0;color:#64748b;border-radius:7px;padding:6px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap">No</button>';
+    html += '</div></div>';
+  });
+
+  html += '</div>';
+  html += '<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px">';
+  html += '<button onclick="submitCounsel()" style="background:#6c3fd8;color:#fff;border:none;border-radius:10px;padding:12px 28px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit">Check My Answers</button>';
+  html += '<button onclick="resetCounsel()" style="background:none;border:2px solid #dde3ec;color:#4a5568;border-radius:10px;padding:12px 20px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit">Reset</button>';
+  html += '</div>';
+
+  if (isInst) {
+    html += '<div style="background:#f0ebff;border:2px solid #ddd6fe;border-radius:10px;padding:14px 16px;font-size:12px;color:#4c28b0;line-height:1.75">';
+    html += '<strong>Instructor answer key — Answer YES to items 1, 2, 4, 6, 8, 9, 11, 12, 14, 15 (10 correct statements)</strong><br>';
+    html += 'Answer NO to: (3) press before inhaling — wrong sequence; (5) fast inhalation — causes throat impaction; (7) swallow water — must spit; (10) stop in summer — dangerous; (13) halve Propranolol — still absolutely contraindicated; (16) aerosols improve air — WRONG, aerosol sprays are airway irritants.';
+    html += '</div>';
+  }
+
+  pane.innerHTML = html;
+
+  // Append to the detail content div
+  var dc = document.getElementById('detailContent');
+  if (dc) dc.appendChild(pane);
 }
 
 function secSw(name, btn) {
@@ -1379,30 +1901,50 @@ function saveQ() {
 }
 
 function renderQList() {
-  const el = document.getElementById('qList');
+  var el = document.getElementById('qList');
   if (!S.questions.length) {
     el.innerHTML = '<div class="empty"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/></svg><p>No questions yet. Add your first question.</p></div>';
     return;
   }
-  el.innerHTML = S.questions.map((q, i) => {
-    const p = S.patients[q.ptId];
-    return `<div class="q-item">
-      <div class="q-hdr">
-        <div class="q-txt">${q.text}</div>
-        <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">
-          <span class="q-badge">${q.cat}</span>
-          <div style="display:flex;gap:5px">
-            <button class="btn-gh" style="font-size:11px;padding:4px 9px" onclick="openEditQ(${i})">Edit</button>
-            <button class="btn-del" onclick="S.questions.splice(${i},1);renderQList()">Remove</button>
-          </div>
-        </div>
-      </div>
-      <div style="font-size:11px;color:var(--text3);margin-bottom:6px">Patient: ${p?p.fname+' '+p.lname:'Unknown'}</div>
-      <div class="q-opts" style="pointer-events:none">
-        ${(q.opts||[]).map((o, j) => `<div class="q-opt ${j===q.correct?'correct':''}"><div class="q-let">${String.fromCharCode(65+j)}</div>${o}</div>`).join('')}
-      </div>
-    </div>`;
-  }).join('');
+  var ptColors = ['#0e7c6b','#dc2626','#6c3fd8'];
+  var ptBgs    = ['#e1f5ee','#fef2f2','#f0ebff'];
+  var groups = {};
+  S.questions.forEach(function(q, i) {
+    var key = q.ptId || 0;
+    if (!groups[key]) groups[key] = [];
+    groups[key].push({q:q, idx:i});
+  });
+  var html = '';
+  Object.keys(groups).sort().forEach(function(ptId) {
+    var pt  = S.patients[parseInt(ptId)];
+    var col = ptColors[parseInt(ptId)] || '#0a2540';
+    var bg  = ptBgs[parseInt(ptId)]   || '#f4f6f9';
+    var items = groups[ptId];
+    html += '<div style="margin-bottom:24px">';
+    html += '<div style="display:flex;align-items:center;gap:12px;padding:14px 18px;background:'+bg+';border-radius:14px;border:2px solid '+col+';margin-bottom:12px">';
+    html += '<div style="width:40px;height:40px;border-radius:50%;background:'+col+';display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#fff">'+(pt?pt.fname[0]+pt.lname[0]:'?')+'</div>';
+    html += '<div><div style="font-size:14px;font-weight:700;color:'+col+'">'+(pt?pt.fname+' '+pt.lname:'Unknown')+'</div>';
+    html += '<div style="font-size:11px;color:#8a95a3">'+(pt?pt.mrn+' &bull; '+pt.age+'y':'')+'</div></div>';
+    html += '<div style="margin-left:auto;background:'+col+';color:#fff;border-radius:99px;padding:4px 12px;font-size:11px;font-weight:700">'+items.length+' Q</div></div>';
+    items.forEach(function(item) {
+      var q = item.q; var i = item.idx;
+      html += '<div class="q-item" style="border-left:4px solid '+col+';margin-left:8px;margin-bottom:10px">';
+      html += '<div class="q-hdr"><div class="q-txt">'+q.text+'</div>';
+      html += '<div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end">';
+      html += '<span class="q-badge">'+q.cat+'</span>';
+      html += '<div style="display:flex;gap:5px">';
+      html += '<button class="btn-gh" style="font-size:11px;padding:4px 9px" onclick="openEditQ('+i+')">Edit</button>';
+      html += '<button class="btn-del" onclick="S.questions.splice('+i+',1);renderQList()">Remove</button>';
+      html += '</div></div></div>';
+      html += '<div class="q-opts" style="pointer-events:none">';
+      (q.opts||[]).forEach(function(o,j){
+        html += '<div class="q-opt '+(j===q.correct?'correct':'')+'">'+'<div class="q-let">'+String.fromCharCode(65+j)+'</div>'+o+'</div>';
+      });
+      html += '</div></div>';
+    });
+    html += '</div>';
+  });
+  el.innerHTML = html;
 }
 
 // ═══════════════════════════════════════════
@@ -1416,6 +1958,43 @@ function renderQuiz() {
   }
   if (S.submitted) { renderQuizRes(); return; }
 
+  // If no case selected yet, show case selector
+  if (S.selectedPtId === undefined || S.selectedPtId === null) {
+    var ptColors = ['#0e7c6b','#dc2626','#6c3fd8'];
+    var ptBgs    = ['#e1f5ee','#fef2f2','#f0ebff'];
+    var cards = '';
+    S.patients.forEach(function(pt, idx) {
+      var qs = S.questions.filter(function(q){ return q.ptId === idx; });
+      if (!qs.length) return;
+      var col = ptColors[idx] || '#0a2540';
+      var bg  = ptBgs[idx]   || '#f4f6f9';
+      cards += '<div class="pt-case-btn" data-ptid="' + idx + '" style="border:2px solid '+col+';background:'+bg+';border-radius:14px;padding:18px 20px;margin-bottom:12px;display:flex;align-items:center;gap:14px;cursor:pointer">';
+      cards += '<div style="width:48px;height:48px;border-radius:50%;background:'+col+';display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#fff;flex-shrink:0">'+pt.fname[0]+pt.lname[0]+'</div>';
+      cards += '<div><div style="font-size:15px;font-weight:700;color:#0a2540">'+pt.fname+' '+pt.lname+'</div>';
+      cards += '<div style="font-size:12px;color:#8a95a3;margin-top:2px">'+pt.mrn+' &bull; '+pt.age+'y &bull; '+((pt.dx||[])[0]||'').split('(')[0].trim()+'</div>';
+      cards += '<div style="font-size:11px;font-weight:700;color:'+col+';margin-top:4px">'+qs.length+' question'+(qs.length!==1?'s':'')+'</div></div>';
+      cards += '<div style="margin-left:auto;font-size:22px;color:'+col+'">&#8594;</div></div>';
+    });
+    el.innerHTML = '<div style="font-size:14px;font-weight:700;color:#0a2540;margin-bottom:6px">Select a patient case:</div>'
+      + '<div style="font-size:12px;color:#8a95a3;margin-bottom:16px">Each case has its own set of clinical questions. Review the patient record before starting.</div>'
+      + cards;
+    el.querySelectorAll('.pt-case-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        S.selectedPtId = parseInt(this.getAttribute('data-ptid'));
+        S.quizAns = {};
+        renderQuiz();
+      });
+    });
+    return;
+  }
+
+  // Filter questions for selected patient
+  var allQ = S.questions.filter(function(q){ return q.ptId === S.selectedPtId; });
+  if (!allQ.length) {
+    el.innerHTML = '<div class="empty"><p>No questions for this case yet.</p></div>';
+    return;
+  }
+
   const answered = Object.keys(S.quizAns).length;
   el.innerHTML = `
     <div class="alert-box alert-teal">
@@ -1423,26 +2002,21 @@ function renderQuiz() {
       Answer all ${S.questions.length} questions. Review the patient cases first if you haven't already. Consider the patient's age, renal function, comorbidities, allergies, and the complete medication list.
     </div>
     <div style="font-size:12px;color:var(--text3);margin-bottom:14px">${answered}/${S.questions.length} answered</div>
-    ${S.questions.map((q, i) => {
-      const p = S.patients[q.ptId];
-      return `<div class="q-item" id="qi-${i}">
-        <div class="q-hdr">
-          <div>
-            <div style="font-size:10px;color:var(--text3);margin-bottom:4px;font-weight:600">Q${i+1} &bull; ${q.cat} &bull; Patient: ${p?p.fname+' '+p.lname:'—'}</div>
-            <div class="q-txt">${q.text}</div>
-          </div>
-          <span class="q-badge" style="background:${S.quizAns[i]!==undefined?'var(--teal-l)':'var(--surface)'};color:${S.quizAns[i]!==undefined?'var(--teal)':'var(--text3)'}">${S.quizAns[i]!==undefined?'✓ Answered':'Not answered'}</span>
-        </div>
-        <div class="q-opts">
-          ${(q.opts||[]).map((o, j) => `
-            <div class="q-opt ${S.quizAns[i]===j?'selected':''}" onclick="pickAns(${i},${j})">
-              <div class="q-let">${String.fromCharCode(65+j)}</div>${o}
-            </div>`).join('')}
-        </div>
-      </div>`;
+    ${allQ.map(function(q, i) {
+      return '<div class="q-item" id="qi-'+i+'">'
+        + '<div class="q-hdr"><div>'
+        + '<div style="font-size:10px;color:var(--text3);margin-bottom:4px;font-weight:600">Q'+(i+1)+' &bull; '+q.cat+'</div>'
+        + '<div class="q-txt">'+q.text+'</div>'
+        + '</div><span class="q-badge" style="background:'+(S.quizAns[i]!==undefined?'var(--teal-l)':'var(--surface)')+';color:'+(S.quizAns[i]!==undefined?'var(--teal)':'var(--text3)')+'">'+( S.quizAns[i]!==undefined?'Answered':'Not answered')+'</span></div>'
+        + '<div class="q-opts">'
+        + (q.opts||[]).map(function(o,j){ return '<div class="q-opt '+(S.quizAns[i]===j?'selected':'')+'" onclick="pickAns('+i+','+j+')">'+'<div class="q-let">'+String.fromCharCode(65+j)+'</div>'+o+'</div>'; }).join('')
+        + '</div></div>';
     }).join('')}
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-top:10px;padding-top:16px;border-top:1px solid var(--border)">
-      <div style="font-size:12px;color:var(--text3)">${answered}/${S.questions.length} questions answered</div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button class="btn-gh" onclick="S.selectedPtId=null;S.quizAns={};renderQuiz()">← Change Case</button>
+        <span style="font-size:12px;color:var(--text3)">${answered}/${allQ.length} answered</span>
+      </div>
       <button class="btn-prim" style="width:auto;padding:12px 32px" onclick="submitQuiz()">Submit Assessment</button>
     </div>`;
 }
@@ -1453,22 +2027,25 @@ function pickAns(qi, oi) {
 }
 
 function submitQuiz() {
+  var allQ = S.questions.filter(function(q){ return q.ptId === S.selectedPtId; });
   const answered = Object.keys(S.quizAns).length;
-  if (answered < S.questions.length) {
-    if (!confirm(`You have answered ${answered} of ${S.questions.length} questions. Are you sure you want to submit?`)) return;
+  if (answered < allQ.length) {
+    if (!confirm('You have answered ' + answered + ' of ' + allQ.length + ' questions. Are you sure you want to submit?')) return;
   }
   S.submitted = true;
-  let score = 0;
-  S.questions.forEach((q, i) => { if (S.quizAns[i] === q.correct) score++; });
-  S.results.push({ user: S.user, score, total: S.questions.length, date: new Date().toLocaleDateString('en-GB'), ans: Object.assign({}, S.quizAns) });
+  var pt = S.patients[S.selectedPtId];
+  var score = 0;
+  allQ.forEach(function(q, i) { if (S.quizAns[i] === q.correct) score++; });
+  S.results.push({ user: S.user, ptName: pt ? pt.fname+' '+pt.lname : 'Unknown', score: score, total: allQ.length, date: new Date().toLocaleDateString('en-GB'), ans: Object.assign({}, S.quizAns) });
   renderQuizRes();
 }
 
 function renderQuizRes() {
   const el = document.getElementById('quizDiv');
-  let score = 0;
-  S.questions.forEach((q, i) => { if (S.quizAns[i] === q.correct) score++; });
-  const pct = Math.round(score / S.questions.length * 100);
+  var allQ = S.questions.filter(function(q){ return q.ptId === S.selectedPtId; });
+  var score = 0;
+  allQ.forEach(function(q, i) { if (S.quizAns[i] === q.correct) score++; });
+  const pct = Math.round(score / allQ.length * 100);
   const col = pct >= 80 ? 'var(--accent)' : pct >= 60 ? 'var(--amber)' : 'var(--red)';
   const msg = pct >= 80 ? 'Excellent pharmacovigilance awareness — outstanding clinical reasoning!' :
               pct >= 60 ? 'Good effort. Review the explanations below to strengthen your drug safety knowledge.' :
@@ -1484,7 +2061,7 @@ function renderQuizRes() {
         <text x="26" y="31" text-anchor="middle" font-size="12" font-weight="700" fill="${col}">${pct}%</text>
       </svg>
       <div>
-        <div class="score-n" style="color:${col}">${score} / ${S.questions.length}</div>
+        <div class="score-n" style="color:${col}">${score} / ${allQ.length}</div>
         <div class="score-l">Correct answers</div>
       </div>
       <div style="margin-left:auto;text-align:right">
@@ -1496,27 +2073,21 @@ function renderQuizRes() {
       ${sv('<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>',pct>=70?'var(--teal)':'var(--amber)')}
       ${msg}
     </div>
-    ${S.questions.map((q, i) => {
-      const chosen = S.quizAns[i];
-      const isOk = chosen === q.correct;
-      return `<div class="q-item">
-        <div class="q-hdr">
-          <div class="q-txt">${q.text}</div>
-          <span class="q-badge" style="background:${isOk?'var(--teal-l)':'var(--red-l)'};color:${isOk?'var(--teal)':'var(--red)'};font-weight:700">${isOk?'✓ Correct':'✗ Incorrect'}</span>
-        </div>
-        <div class="q-opts" style="pointer-events:none">
-          ${(q.opts||[]).map((o, j) => `
-            <div class="q-opt ${j===q.correct?'revealed':''} ${j===chosen&&!isOk?'wrong':''}">
-              <div class="q-let">${String.fromCharCode(65+j)}</div>${o}
-            </div>`).join('')}
-        </div>
-        ${q.exp ? `<div style="margin-top:10px;padding:11px 14px;background:var(--surface);border-radius:8px;font-size:12px;color:var(--text2);line-height:1.7;border-left:3px solid var(--accent)">
-          <strong style="color:var(--teal)">Explanation:</strong> ${q.exp}
-        </div>` : ''}
-      </div>`;
+    ${allQ.map(function(q, i) {
+      var chosen = S.quizAns[i];
+      var isOk = chosen === q.correct;
+      return '<div class="q-item">'
+        + '<div class="q-hdr"><div class="q-txt">'+q.text+'</div>'
+        + '<span class="q-badge" style="background:'+(isOk?'var(--teal-l)':'var(--red-l)')+';color:'+(isOk?'var(--teal)':'var(--red)')+';font-weight:700">'+(isOk?'Correct':'Incorrect')+'</span></div>'
+        + '<div class="q-opts" style="pointer-events:none">'
+        + (q.opts||[]).map(function(o,j){ return '<div class="q-opt '+(j===q.correct?'revealed':'')+' '+(j===chosen&&!isOk?'wrong':'')+'">'+'<div class="q-let">'+String.fromCharCode(65+j)+'</div>'+o+'</div>'; }).join('')
+        + '</div>'
+        + (q.exp ? '<div style="margin-top:10px;padding:11px 14px;background:var(--surface);border-radius:8px;font-size:12px;color:var(--text2);line-height:1.7;border-left:3px solid var(--accent)"><strong style="color:var(--teal)">Explanation:</strong> '+q.exp+'</div>' : '')
+        + '</div>';
     }).join('')}
-    <div style="display:flex;gap:10px;margin-top:12px">
-      <button class="btn-gh" onclick="S.submitted=false;S.quizAns={};renderQuiz()">Retake Assessment</button>
+    <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+      <button class="btn-gh" onclick="S.submitted=false;S.quizAns={};S.selectedPtId=null;renderQuiz()">Try Another Case</button>
+      <button class="btn-gh" onclick="S.submitted=false;S.quizAns={};renderQuiz()">Retake This Case</button>
       <button class="btn-sm" onclick="gp('cases')">Review Patient Cases</button>
     </div>`;
 }
@@ -1548,6 +2119,45 @@ function renderResults() {
       </div>
     </div>`;
   }).join('');
+}
+
+// ═══════════════════════════════════════════
+// CHA2DS2-VASc CALCULATOR
+// ═══════════════════════════════════════════
+function calcCHADS() {
+  var score = 0;
+  var checks = ['chads-chf','chads-htn','chads-age75','chads-dm','chads-stroke','chads-vasc','chads-age65','chads-female'];
+  var pts    = [1, 1, 2, 1, 2, 1, 1, 1];
+  checks.forEach(function(id, i) {
+    var el = document.getElementById(id);
+    if (el && el.checked) score += pts[i];
+  });
+
+  var risk, riskCol, action, actionCol;
+  if (score === 0) {
+    risk = 'Low risk — 0% annual stroke risk'; riskCol = 'var(--teal)';
+    action = 'No anticoagulation needed. Reassess annually.'; actionCol = 'var(--teal-l)';
+  } else if (score === 1) {
+    risk = 'Low-moderate risk — ~1.3% annual stroke risk'; riskCol = 'var(--amber)';
+    action = 'Consider anticoagulation. Reassess risk factors.'; actionCol = 'var(--amber-l)';
+  } else if (score === 2) {
+    risk = 'Moderate risk — ~2.2% annual stroke risk'; riskCol = 'var(--orange,#ea580c)';
+    action = 'Oral anticoagulation RECOMMENDED. Prefer DOAC over Warfarin.'; actionCol = '#fff7ed';
+  } else {
+    var annualRisk = score === 3 ? '3.2' : score === 4 ? '4.0' : score === 5 ? '6.7' : score === 6 ? '9.8' : '>10';
+    risk = 'HIGH RISK — ~' + annualRisk + '% annual stroke risk'; riskCol = 'var(--red)';
+    action = 'Oral anticoagulation MANDATORY. Start DOAC (Apixaban preferred in HF/CKD). Calculate HAS-BLED and address modifiable bleeding risks. STOP Aspirin once anticoagulation started.'; actionCol = 'var(--red-l)';
+  }
+
+  var res = document.getElementById('chads-result');
+  res.style.display = 'block';
+  res.innerHTML =
+    '<div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;flex-wrap:wrap">' +
+    '<div style="text-align:center"><div style="font-size:52px;font-weight:700;color:' + riskCol + ';line-height:1">' + score + '</div><div style="font-size:11px;color:var(--text3);font-weight:600">SCORE</div></div>' +
+    '<div><div style="font-size:14px;font-weight:700;color:' + riskCol + ';margin-bottom:4px">' + risk + '</div></div>' +
+    '</div>' +
+    '<div style="background:' + actionCol + ';border-radius:8px;padding:10px 13px;font-size:12px;font-weight:600;color:var(--text);line-height:1.6">' +
+    '<strong>Recommended action:</strong> ' + action + '</div>';
 }
 
 // ═══════════════════════════════════════════
@@ -1992,6 +2602,103 @@ function exportPlatform() {
     t.value = document.documentElement.outerHTML;
   }
 })();
+
+// ═══════════════════════════════════════════
+// PHARMACIST COUNSELLING CHECKER (Sara)
+// ═══════════════════════════════════════════
+// Stores student Yes/No answers: {1: true, 2: false, ...}
+var _counselAns = {};
+
+function pickCounsel(n, isYes) {
+  _counselAns[n] = isYes;
+  var yBtn = document.getElementById('cy-' + n);
+  var nBtn = document.getElementById('cn-' + n);
+  var row  = document.getElementById('crow-' + n);
+  if (!yBtn || !nBtn) return;
+  if (isYes) {
+    yBtn.style.background = '#6c3fd8'; yBtn.style.color = '#fff'; yBtn.style.borderColor = '#6c3fd8';
+    nBtn.style.background = '#f1f5f9'; nBtn.style.color = '#64748b'; nBtn.style.borderColor = '#e2e8f0';
+  } else {
+    nBtn.style.background = '#64748b'; nBtn.style.color = '#fff'; nBtn.style.borderColor = '#64748b';
+    yBtn.style.background = '#f0ebff'; yBtn.style.color = '#6c3fd8'; yBtn.style.borderColor = '#ddd6fe';
+  }
+}
+
+function submitCounsel() {
+  var correct = {1:true,2:true,3:false,4:true,5:false,6:true,7:false,8:true,9:true,10:false,11:true,12:true,13:false,14:true,15:true,16:false};
+  var score = 0; var wrong = 0; var unanswered = 0;
+  var total = Object.keys(correct).length; // 16
+
+  for (var n = 1; n <= 16; n++) {
+    var row  = document.getElementById('crow-' + n);
+    var yBtn = document.getElementById('cy-' + n);
+    var nBtn = document.getElementById('cn-' + n);
+    if (!row) continue;
+
+    if (_counselAns[n] === undefined) { unanswered++; continue; }
+
+    var studentSaysYes  = _counselAns[n];
+    var correctAnswerYes = correct[n];
+    var isRight = (studentSaysYes === correctAnswerYes);
+
+    if (isRight) {
+      score++;
+      row.style.background  = '#f0fdf4';
+      row.style.borderColor = '#16a34a';
+    } else {
+      wrong++;
+      row.style.background  = '#fef2f2';
+      row.style.borderColor = '#dc2626';
+      // Show correct answer hint
+      if (correctAnswerYes) {
+        yBtn.style.background = '#16a34a'; yBtn.style.color = '#fff'; yBtn.style.borderColor = '#16a34a';
+      } else {
+        nBtn.style.background = '#16a34a'; nBtn.style.color = '#fff'; nBtn.style.borderColor = '#16a34a';
+      }
+    }
+    yBtn.style.pointerEvents = 'none';
+    nBtn.style.pointerEvents = 'none';
+  }
+
+  var answered = total - unanswered;
+  var pct = Math.round(score / total * 100);
+  var col = pct >= 80 ? '#16a34a' : pct >= 60 ? '#d97706' : '#dc2626';
+  var msg = pct === 100 ? 'Perfect score! Excellent pharmacist counselling skills!' :
+            pct >= 80   ? 'Great work! Review any red items to reach perfection.' :
+            pct >= 60   ? 'Good effort. Red items show where you need to reconsider.' :
+                          'Keep studying. Review Sara case carefully and try again.';
+  if (unanswered > 0) msg = unanswered + ' item(s) not answered. ' + msg;
+
+  var res = document.getElementById('counsel-result');
+  if (res) {
+    res.style.display = 'block';
+    res.innerHTML =
+      '<div style="background:#fff;border:2px solid '+col+';border-radius:12px;padding:16px 20px">' +
+      '<div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:10px">' +
+      '<div style="font-size:44px;font-weight:800;color:'+col+'">'+score+'/'+total+'</div>' +
+      '<div><div style="font-size:15px;font-weight:700;color:'+col+'">'+pct+'% correct &nbsp;&bull;&nbsp; '+wrong+' wrong</div>' +
+      '<div style="font-size:12px;color:#4a5568;margin-top:3px">'+msg+'</div></div></div>' +
+      '<div style="display:flex;gap:8px;flex-wrap:wrap;font-size:11px;margin-top:4px">' +
+      '<span style="background:#f0fdf4;border:1px solid #86efac;border-radius:6px;padding:3px 10px;color:#15803d;font-weight:600">Green = correct answer</span>' +
+      '<span style="background:#fef2f2;border:1px solid #fca5a5;border-radius:6px;padding:3px 10px;color:#991b1b;font-weight:600">Red = wrong — correct answer shown in green</span>' +
+      '</div></div>';
+  }
+}
+
+function resetCounsel() {
+  _counselAns = {};
+  for (var n = 1; n <= 16; n++) {
+    var row  = document.getElementById('crow-' + n);
+    var yBtn = document.getElementById('cy-' + n);
+    var nBtn = document.getElementById('cn-' + n);
+    if (row)  { row.style.background = '#fff'; row.style.borderColor = 'var(--border)'; }
+    if (yBtn) { yBtn.style.background='#f0ebff';yBtn.style.color='#6c3fd8';yBtn.style.borderColor='#ddd6fe';yBtn.style.pointerEvents='auto'; }
+    if (nBtn) { nBtn.style.background='#f1f5f9';nBtn.style.color='#64748b';nBtn.style.borderColor='#e2e8f0';nBtn.style.pointerEvents='auto'; }
+  }
+  var res = document.getElementById('counsel-result');
+  if (res) res.style.display = 'none';
+}
+
 </script>
 </body>
 </html>
